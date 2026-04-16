@@ -1,5 +1,5 @@
 /* ============================================================
-   KAVA CULTURE — Main JavaScript
+   THE SPOT NASHUA — Main JavaScript
    ============================================================ */
 
 'use strict';
@@ -12,7 +12,7 @@ function initNav() {
   const overlay   = document.querySelector('.nav-overlay');
   const backdrop  = document.querySelector('.nav-overlay-backdrop');
 
-  if (!hamburger) return;
+  if (!hamburger || !overlay || !backdrop) return;
 
   function toggleNav(open) {
     hamburger.classList.toggle('open', open);
@@ -30,7 +30,7 @@ function initNav() {
       const sub = label.nextElementSibling;
       if (sub) sub.classList.toggle('open');
       const arrow = label.querySelector('.nav-arrow');
-      if (arrow) arrow.textContent = sub.classList.contains('open') ? '▲' : '▾';
+      if (arrow) arrow.textContent = sub.classList.contains('open') ? '\u25B2' : '\u25BE';
     });
   });
 }
@@ -204,20 +204,50 @@ function initFranchiseForm() {
 }
 
 /* -------------------------------------------------------
-   10. FOOTER EMAIL SIGNUP
+   10. FOOTER EMAIL SIGNUP — calls backend API
 ------------------------------------------------------- */
 function initEmailSignup() {
+  const API_BASE  = 'https://websiteupgraderpro.com';
+  const CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
+
   document.querySelectorAll('.footer-email-form').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const btn = form.querySelector('button');
-      btn.textContent = 'Subscribed!';
-      btn.style.background = '#4CAF50';
-      setTimeout(() => {
-        btn.textContent = 'Sign Up';
-        btn.style.background = '';
-        form.reset();
-      }, 3000);
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput?.value?.trim();
+
+      if (!email || !btn) return;
+
+      btn.textContent = 'Signing up...';
+      btn.disabled = true;
+
+      fetch(API_BASE + '/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId: CLIENT_ID, email: email, source: 'footer' }),
+      })
+        .then(res => {
+          if (res.ok || res.status === 409) {
+            btn.textContent = 'Subscribed!';
+            btn.style.background = '#4CAF50';
+            form.reset();
+          } else {
+            btn.textContent = 'Try Again';
+            btn.style.background = '#f44336';
+          }
+        })
+        .catch(() => {
+          btn.textContent = 'Try Again';
+          btn.style.background = '#f44336';
+        })
+        .finally(() => {
+          btn.disabled = false;
+          setTimeout(() => {
+            btn.textContent = 'Sign Up';
+            btn.style.background = '';
+          }, 3000);
+        });
     });
   });
 }

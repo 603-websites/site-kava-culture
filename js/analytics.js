@@ -1,7 +1,7 @@
 /**
  * The Spot — Analytics & Lead Tracking
  * Sends page views, newsletter signups, and contact form submissions
- * to the websiteupgraderpro.com dev dashboard via Supabase backend.
+ * to the websiteupgraderpro.com dashboard via Railway backend.
  */
 (function () {
   var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
