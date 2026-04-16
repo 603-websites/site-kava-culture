@@ -2111,3 +2111,174 @@ select:focus-visible {
 
 /* Franchise intro section needs relative positioning */
 .franchise-intro { position: relative; overflow: hidden; }
+
+/* ============================================================
+   BOOK A SPOT PAGE
+   ============================================================ */
+
+/* Hero */
+.booking-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.booking-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0F272E 50%, #1e5060 100%);
+  z-index: 0;
+}
+
+.booking-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(137,227,235,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.booking-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px 20px 80px;
+}
+
+/* How It Works Steps */
+.booking-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.booking-step {
+  text-align: center;
+  position: relative;
+}
+
+.booking-step-number {
+  font-family: 'Norwester', sans-serif;
+  font-size: 56px;
+  color: rgba(137,227,235,0.15);
+  line-height: 1;
+  margin-bottom: -10px;
+}
+
+.booking-step-icon {
+  margin: 0 auto 16px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(137,227,235,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.booking-step-title {
+  font-family: 'Norwester', sans-serif;
+  font-size: 20px;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.booking-step-desc {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.7;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* Booking form dark-bg inputs */
+.booking-input {
+  background: rgba(255,255,255,0.07) !important;
+  border-color: rgba(137,227,235,0.25) !important;
+  color: #fff !important;
+}
+
+.booking-input::placeholder {
+  color: rgba(137,227,235,0.4) !important;
+}
+
+.booking-input:focus {
+  border-color: var(--teal-primary) !important;
+  background: rgba(255,255,255,0.1) !important;
+}
+
+.booking-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2389E3EB' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 15px center !important;
+  padding-right: 40px !important;
+  cursor: pointer;
+}
+
+.booking-select option {
+  background: #1a2a30;
+  color: #fff;
+}
+
+/* Venue Info Grid */
+.booking-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.booking-info-card {
+  padding: 30px 24px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.booking-info-card:hover {
+  transform: translateY(-4px);
+}
+
+.booking-info-icon {
+  margin: 0 auto 14px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(137,227,235,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.booking-info-title {
+  font-family: 'Norwester', sans-serif;
+  font-size: 18px;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.booking-info-desc {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+/* Booking page responsive */
+@media (max-width: 900px) {
+  .booking-steps { grid-template-columns: 1fr; gap: 30px; }
+  .booking-info-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .booking-hero { min-height: 400px; }
+  .booking-hero-content { padding: 40px 20px 60px; }
+}

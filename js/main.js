@@ -176,25 +176,11 @@ function initLocationSearch() {
 }
 
 /* -------------------------------------------------------
-   8. CONTACT FORM — client-side validation
+   8. CONTACT FORM — handled by inline script on contact.html
 ------------------------------------------------------- */
 function initContactForm() {
-  const form = document.querySelector('.contact-form form');
-  if (!form) return;
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('.form-submit-btn');
-    btn.textContent = 'Sent! ✓';
-    btn.style.background = '#4CAF50';
-    btn.style.borderColor = '#4CAF50';
-    setTimeout(() => {
-      btn.textContent = 'Submit Form';
-      btn.style.background = '';
-      btn.style.borderColor = '';
-      form.reset();
-    }, 3000);
-  });
+  // Contact form submission is now handled by a dedicated inline script
+  // on contact.html that POSTs to the backend API.
 }
 
 /* -------------------------------------------------------
