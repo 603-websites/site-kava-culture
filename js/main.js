@@ -171,9 +171,13 @@ function initEmailSignup() {
         body: JSON.stringify({ clientId: CLIENT_ID, email: email, source: 'footer' }),
       })
         .then(res => {
-          if (res.ok || res.status === 409) {
+          if (res.ok) {
             btn.textContent = 'Subscribed!';
             btn.style.background = '#4CAF50';
+            form.reset();
+          } else if (res.status === 409) {
+            btn.textContent = 'Already subscribed!';
+            btn.style.background = '#42AFB9';
             form.reset();
           } else {
             btn.textContent = 'Try Again';
@@ -185,10 +189,10 @@ function initEmailSignup() {
           btn.style.background = '#f44336';
         })
         .finally(() => {
-          btn.disabled = false;
           setTimeout(() => {
             btn.textContent = 'Sign Up';
             btn.style.background = '';
+            btn.disabled = false;
           }, 3000);
         });
     });
@@ -196,13 +200,15 @@ function initEmailSignup() {
 }
 
 /* -------------------------------------------------------
-   11. ACTIVE NAV LINK highlight (mobile + desktop)
+   7. ACTIVE NAV LINK highlight (mobile + desktop)
 ------------------------------------------------------- */
 function setActiveNavLink() {
-  const path = window.location.pathname;
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-overlay a, .desktop-nav a:not(.nav-cta)').forEach(a => {
     const href = a.getAttribute('href');
-    if (href && path.endsWith(href.replace(/^\.\.\//, '').replace(/\/$/, '') || '/')) {
+    if (!href || href === '#') return;
+    const linkPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '') || '/';
+    if (linkPath === currentPath) {
       a.classList.add('active');
       a.style.color = 'var(--teal-link)';
     }
@@ -210,13 +216,13 @@ function setActiveNavLink() {
 }
 
 /* -------------------------------------------------------
-   12. NEWSLETTER FLOATING CTA — carousel text
+   8. NEWSLETTER FLOATING CTA — carousel text
 ------------------------------------------------------- */
 function initNewsletterFloat() {
-  var messages = ['Subscribe to our Newsletter', 'Live Music Events'];
-  var idx = 0;
+  const messages = ['Subscribe to our Newsletter', 'Live Music Events'];
+  let idx = 0;
 
-  var bar = document.createElement('div');
+  const bar = document.createElement('div');
   bar.className = 'newsletter-float';
   bar.setAttribute('role', 'button');
   bar.setAttribute('aria-label', 'Subscribe to newsletter');
@@ -231,16 +237,16 @@ function initNewsletterFloat() {
   document.body.appendChild(bar);
 
   bar.addEventListener('click', function() {
-    var signup = document.querySelector('.footer-signup');
+    const signup = document.querySelector('.footer-signup');
     if (signup) {
       signup.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      var input = signup.querySelector('input[type="email"]');
+      const input = signup.querySelector('input[type="email"]');
       if (input) setTimeout(function() { input.focus(); }, 600);
     }
   });
 
-  setInterval(function() {
-    var textEl = bar.querySelector('.newsletter-float-text span');
+  function cycleText() {
+    const textEl = bar.querySelector('.newsletter-float-text span');
     if (!textEl) return;
     textEl.classList.add('slide-up');
     setTimeout(function() {
@@ -252,46 +258,60 @@ function initNewsletterFloat() {
       void textEl.offsetWidth;
       textEl.classList.remove('slide-down');
     }, 500);
-  }, 3500);
+  }
+
+  let cycleTimer = setInterval(cycleText, 3500);
+
+  document.addEventListener('visibilitychange', function() {
+    // Pause newsletter text cycling when tab is hidden
+    if (document.hidden) {
+      clearInterval(cycleTimer);
+      cycleTimer = null;
+    } else {
+      if (!cycleTimer) {
+        cycleTimer = setInterval(cycleText, 3500);
+      }
+    }
+  });
 }
 
 /* -------------------------------------------------------
-   13. REVIEW CAROUSEL
+   9. REVIEW CAROUSEL
 ------------------------------------------------------- */
 function initReviewCarousel() {
-  var viewport = document.querySelector('.review-carousel-viewport');
-  var track = document.querySelector('.review-carousel-track');
-  var cards = document.querySelectorAll('.review-card');
-  var prevBtn = document.querySelector('.review-arrow-prev');
-  var nextBtn = document.querySelector('.review-arrow-next');
-  var dotsContainer = document.querySelector('.review-dots');
+  const viewport = document.querySelector('.review-carousel-viewport');
+  const track = document.querySelector('.review-carousel-track');
+  const cards = document.querySelectorAll('.review-card');
+  const prevBtn = document.querySelector('.review-arrow-prev');
+  const nextBtn = document.querySelector('.review-arrow-next');
+  const dotsContainer = document.querySelector('.review-dots');
 
   if (!track || !cards.length || !viewport) return;
 
-  var currentIndex = 0;
-  var autoTimer = null;
+  let currentIndex = 0;
+  let autoTimer = null;
 
   function getCardsPerView() {
-    var w = window.innerWidth;
+    const w = window.innerWidth;
     if (w <= 600) return 1;
     if (w <= 900) return 2;
     return 3;
   }
 
   function getMaxIndex() {
-    var perView = getCardsPerView();
+    const perView = getCardsPerView();
     return Math.max(0, cards.length - perView);
   }
 
   function updateTrack() {
-    var perView = getCardsPerView();
-    var cardWidthPercent = 100 / perView;
+    const perView = getCardsPerView();
+    const cardWidthPercent = 100 / perView;
 
-    for (var i = 0; i < cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) {
       cards[i].style.flex = '0 0 ' + cardWidthPercent + '%';
     }
 
-    var offset = -(currentIndex * cardWidthPercent);
+    const offset = -(currentIndex * cardWidthPercent);
     track.style.transform = 'translateX(' + offset + '%)';
 
     updateDots();
@@ -300,12 +320,12 @@ function initReviewCarousel() {
   function buildDots() {
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
-    var maxIdx = getMaxIndex();
-    var perView = getCardsPerView();
-    var totalDots = maxIdx + 1;
+    const maxIdx = getMaxIndex();
+    const perView = getCardsPerView();
+    const totalDots = maxIdx + 1;
 
-    for (var i = 0; i < totalDots; i++) {
-      var dot = document.createElement('button');
+    for (let i = 0; i < totalDots; i++) {
+      const dot = document.createElement('button');
       dot.className = 'review-dot' + (i === currentIndex ? ' active' : '');
       dot.setAttribute('aria-label', 'Go to review group ' + (i + 1));
       dot.dataset.index = i;
@@ -319,20 +339,20 @@ function initReviewCarousel() {
 
   function updateDots() {
     if (!dotsContainer) return;
-    var dots = dotsContainer.querySelectorAll('.review-dot');
-    for (var i = 0; i < dots.length; i++) {
+    const dots = dotsContainer.querySelectorAll('.review-dot');
+    for (let i = 0; i < dots.length; i++) {
       dots[i].classList.toggle('active', i === currentIndex);
     }
   }
 
   function goTo(idx) {
-    var maxIdx = getMaxIndex();
+    const maxIdx = getMaxIndex();
     currentIndex = Math.max(0, Math.min(idx, maxIdx));
     updateTrack();
   }
 
   function advance() {
-    var maxIdx = getMaxIndex();
+    const maxIdx = getMaxIndex();
     if (currentIndex >= maxIdx) {
       goTo(0);
     } else {
@@ -372,14 +392,14 @@ function initReviewCarousel() {
   }
 
   // Pause on hover
-  var wrap = document.querySelector('.review-carousel-wrap');
+  const wrap = document.querySelector('.review-carousel-wrap');
   if (wrap) {
     wrap.addEventListener('mouseenter', stopAuto);
     wrap.addEventListener('mouseleave', startAuto);
   }
 
   // Handle resize
-  var resizeTimeout;
+  let resizeTimeout;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(function() {
@@ -398,9 +418,20 @@ function initReviewCarousel() {
 }
 
 /* -------------------------------------------------------
+   10. DYNAMIC COPYRIGHT YEAR
+------------------------------------------------------- */
+function updateCopyrightYear() {
+  document.querySelectorAll('.footer-copyright').forEach(el => {
+    el.innerHTML = el.innerHTML.replace(/2024–\d{2}/, '2024–' + new Date().getFullYear().toString().slice(2));
+  });
+}
+
+/* -------------------------------------------------------
    INIT ALL
 ------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('js-loaded');
+
   initNav();
   initHeroSlider();
   initTypewriter();
@@ -410,19 +441,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setActiveNavLink();
   initNewsletterFloat();
   initReviewCarousel();
+  updateCopyrightYear();
 });
-
-/* CSS for scroll animations (injected once) */
-const style = document.createElement('style');
-style.textContent = `
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .animate-on-scroll.visible {
-    opacity: 1;
-    transform: none;
-  }
-`;
-document.head.appendChild(style);

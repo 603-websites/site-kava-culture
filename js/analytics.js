@@ -46,10 +46,10 @@
     });
   }
 
-  // --- Newsletter signup (footer form) ---
-  // Note: the actual subscribe POST is handled by initEmailSignup() in main.js.
-  // This function only logs the analytics event to avoid double-calling the subscribe endpoint.
-  function trackSubscribe(email, source) {
+  // --- Newsletter signup analytics (footer form) ---
+  // The actual subscribe POST is in initEmailSignup() in main.js.
+  // This only logs the analytics event — never sends PII to analytics.
+  function trackSubscribe(source) {
     post('/api/analytics/events', {
       clientId:  CLIENT_ID,
       sessionId: getSessionId(),
@@ -81,7 +81,7 @@
       form.addEventListener('submit', function () {
         var emailInput = form.querySelector('input[type="email"]');
         if (emailInput && emailInput.value) {
-          trackSubscribe(emailInput.value, 'footer');
+          trackSubscribe('footer');
         }
       });
     });
