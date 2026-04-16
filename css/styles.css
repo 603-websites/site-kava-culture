@@ -4324,3 +4324,537 @@ html.js-loaded .animate-on-scroll.visible {
 .skip-to-content:focus {
   top: 0;
 }
+
+/* ============================================================
+   EXTRACTED UTILITY CLASSES (replacing inline styles)
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   Page titles — replaces font-family:'Norwester'... combos
+   used in hero sections, form headings, section intros
+   ---------------------------------------------------------- */
+.page-title-white {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(20px, 3vw, 32px);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.page-title-dark {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--text-heading);
+  text-transform: uppercase;
+}
+
+.page-title-teal {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--teal-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.page-title-xl {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(48px, 9vw, 100px);
+  color: white;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+}
+
+/* ----------------------------------------------------------
+   Section headings — replaces inline Norwester + size combos
+   on "THREE SIMPLE STEPS", "WHAT TO EXPECT", etc.
+   ---------------------------------------------------------- */
+.section-title {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.section-title-md {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(32px, 5vw, 50px);
+  color: var(--text-heading);
+  text-transform: uppercase;
+}
+
+.subsection-title {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  text-transform: uppercase;
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+/* "Meet the Team" style — 42px dark Norwester */
+.section-title-lg {
+  font-family: 'Norwester', sans-serif;
+  font-size: 42px;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+}
+
+/* "OTHER WAYS TO REACH US", "Message Sent!", "Request Submitted!" — 28px heading */
+.section-title-sm {
+  font-family: 'Norwester', sans-serif;
+  font-size: 28px;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Same as above but teal — used for success state on dark BG */
+.section-title-sm-teal {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--teal-primary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* ----------------------------------------------------------
+   Card / label headings — replaces inline card titles
+   on contact cards, team cards, info cards
+   ---------------------------------------------------------- */
+.card-heading {
+  font-family: 'Norwester', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+}
+
+.card-heading-lg {
+  font-family: 'Norwester', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  margin-bottom: 4px;
+}
+
+.card-heading-teal {
+  font-family: 'Norwester', sans-serif;
+  font-size: 22px;
+  color: var(--teal-link);
+  margin-bottom: 10px;
+}
+
+/* "HAVE QUESTIONS?" style — 24px dark heading */
+.card-heading-md {
+  font-family: 'Norwester', sans-serif;
+  font-size: 24px;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* ----------------------------------------------------------
+   Script accent text — replaces Arizonia + size + color combos
+   "Bring Your Sound to", "the people behind the spot"
+   ---------------------------------------------------------- */
+.script-accent {
+  font-family: 'Arizonia', cursive;
+  font-size: clamp(30px, 5vw, 60px);
+  color: var(--teal-primary);
+}
+
+.script-accent-sm {
+  font-family: 'Arizonia', cursive;
+  font-size: 24px;
+  color: var(--teal-link);
+}
+
+/* ----------------------------------------------------------
+   Body text — replaces inline font-size + color + line-height
+   ---------------------------------------------------------- */
+.body-lg {
+  font-size: 18px;
+  color: var(--text-body);
+  line-height: 1.8;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.body-md {
+  font-size: 16px;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+.body-sm {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.8;
+}
+
+.body-xs {
+  font-size: 13px;
+  color: var(--text-body);
+}
+
+/* White text on dark backgrounds */
+.body-sm-white {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.body-sm-white-wide {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.body-xs-white {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Subtitle / descriptive text below form section headings */
+.body-subtitle-white {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Centered body text with constrained width (visit-us paragraph, etc.) */
+.body-lg-center {
+  font-size: 18px;
+  color: var(--text-body);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------
+   Role / subtitle — replaces inline job title styling
+   on team member cards (about.html)
+   ---------------------------------------------------------- */
+.role-subtitle {
+  text-align: center;
+  color: var(--teal-link);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+/* ----------------------------------------------------------
+   Spacing utilities — replaces inline margin-top / margin-bottom
+   ---------------------------------------------------------- */
+.mt-xs  { margin-top: 10px; }
+.mt-sm  { margin-top: 16px; }
+.mt-md  { margin-top: 20px; }
+.mt-lg  { margin-top: 30px; }
+.mt-xl  { margin-top: 40px; }
+.mt-2xl { margin-top: 50px; }
+.mt-3xl { margin-top: 60px; }
+.mb-0   { margin-bottom: 0; }
+.mb-xs  { margin-bottom: 8px; }
+.mb-sm  { margin-bottom: 12px; }
+.mb-md  { margin-bottom: 16px; }
+.mb-lg  { margin-bottom: 24px; }
+.mb-xl  { margin-bottom: 30px; }
+.mb-2xl { margin-bottom: 40px; }
+.mb-3xl { margin-bottom: 50px; }
+
+/* ----------------------------------------------------------
+   Layout helpers — replaces common inline display/flex/grid
+   ---------------------------------------------------------- */
+.d-block { display: block; }
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.d-flex-center-sm {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Auto-fit responsive grid (team cards, etc.) */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* 3-column grid (contact cards) */
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* 1fr + 2fr gallery-style split */
+.grid-split-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* ----------------------------------------------------------
+   Card containers — replaces inline bg + padding + shadow combos
+   ---------------------------------------------------------- */
+.card-white {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.card-white-sm {
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* Callout / highlight card — "HAVE QUESTIONS?", "OTHER WAYS TO REACH US" */
+.callout-card {
+  padding: 40px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------
+   Section background helpers — replaces inline background on
+   wave dividers and section wrappers
+   ---------------------------------------------------------- */
+.bg-white       { background: #fff; }
+.bg-light       { background: #f9f9f9; }
+.bg-dark        { background: var(--dark-bg); }
+.bg-teal-deep   { background: var(--teal-deep); }
+.bg-teal        { background: var(--teal-primary); }
+.bg-sage        { background: var(--sage-green); }
+
+/* ----------------------------------------------------------
+   Avatar / icon circles — replaces inline width + height +
+   border-radius + background + flex on team cards, success states
+   ---------------------------------------------------------- */
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--teal-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.success-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--teal-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.success-icon-circle-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--teal-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* ----------------------------------------------------------
+   Form label on dark background — replaces inline
+   color:rgba(255,255,255,0.7) on booking form labels
+   ---------------------------------------------------------- */
+.form-label-light {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Form group with no bottom margin — replaces inline margin-bottom:0
+   on .form-group inside .form-row */
+.form-group-flush {
+  margin-bottom: 0;
+}
+
+/* Larger submit button — replaces inline font-size + padding + min-width */
+.btn-lg {
+  font-size: 18px;
+  padding: 14px 48px;
+  min-width: 200px;
+}
+
+/* Small button — replaces inline font-size + padding overrides on card CTAs */
+.btn-sm {
+  font-size: 12px;
+  padding: 6px 16px;
+}
+
+/* ----------------------------------------------------------
+   Emoji icon — replaces inline font-size:32px on emoji "icons"
+   in contact card grid
+   ---------------------------------------------------------- */
+.emoji-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+/* ----------------------------------------------------------
+   Error / alert box — replaces inline display + background +
+   border + padding on form error messages
+   ---------------------------------------------------------- */
+.form-error-box {
+  display: none;
+  background: rgba(220,50,50,0.1);
+  border: 1px solid rgba(220,50,50,0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  color: #d32f2f;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Error on dark bg (booking form) — slightly different opacity */
+.form-error-box-dark {
+  display: none;
+  background: rgba(220,50,50,0.15);
+  border: 1px solid rgba(220,50,50,0.4);
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------
+   Success state panel — replaces inline display:none + text-align
+   + padding on form success message wrappers
+   ---------------------------------------------------------- */
+.form-success-panel {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.form-success-panel-dark {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* ----------------------------------------------------------
+   Section intro wrapper — replaces inline text-align:center +
+   margin-bottom on heading groups above grids
+   ---------------------------------------------------------- */
+.section-intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-intro-lg {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* ----------------------------------------------------------
+   Hours heading — replaces inline Norwester 22px teal-link
+   on contact page hours display
+   ---------------------------------------------------------- */
+.hours-heading {
+  font-family: 'Norwester', sans-serif;
+  font-size: 22px;
+  color: var(--teal-link);
+  margin-bottom: 10px;
+}
+
+/* ----------------------------------------------------------
+   Instagram badge text — replaces inline strong + font-size
+   ---------------------------------------------------------- */
+.instagram-handle {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  color: var(--black);
+  font-weight: 700;
+}
+
+.instagram-hashtag {
+  font-size: 18px;
+  color: var(--black);
+}
+
+/* ----------------------------------------------------------
+   Insta photo card inner — replaces inline text-align + padding
+   on polaroid-style instagram placeholders
+   ---------------------------------------------------------- */
+.insta-photo-inner {
+  text-align: center;
+  padding: 16px;
+}
+
+.insta-photo-label {
+  font-family: 'Norwester', sans-serif;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ----------------------------------------------------------
+   Container max-width overrides — replaces inline max-width
+   on section containers
+   ---------------------------------------------------------- */
+.container-sm  { max-width: 700px; }
+.container-md  { max-width: 760px; }
+.container-lg  { max-width: 800px; }
+.container-xl  { max-width: 900px; }
+
+/* ----------------------------------------------------------
+   Footer faded text — replaces inline color on privacy/admin links
+   ---------------------------------------------------------- */
+.footer-faded       { color: rgba(255,255,255,0.4); }
+.footer-faded-link  { color: rgba(255,255,255,0.35); }
+
+/* ----------------------------------------------------------
+   Relative z-index wrapper — replaces inline
+   position:relative;z-index:1 on footer containers
+   ---------------------------------------------------------- */
+.pos-relative-z1 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dynamic calendar additions */
+.cal-today { outline: 2px solid var(--teal-primary); outline-offset: -2px; }
+.cal-past { opacity: 0.4; }
+.cal-month-title {
+  font-family: 'Norwester', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.cal-dark .cal-month-title { color: var(--teal-primary); }
+.cal-light .cal-month-title { color: var(--teal-deep); }

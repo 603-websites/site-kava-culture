@@ -315,34 +315,36 @@
             with everything you need to know about joining the movement.
           </p>
 
-          <form class="franchise-form-el animate-on-scroll" id="franchiseForm">
+          <div id="franchise-form-wrap">
+          <form class="franchise-form-el animate-on-scroll" id="franchiseForm" data-form-handler='{"apiPath":"/api/contact/submit","successEl":"franchise-success","errorEl":"franchise-error","formWrap":"franchise-form-wrap","loadingText":"Submitting..."}'>
+            <input type="hidden" name="subject" value="Franchise Inquiry"/>
             <div id="franchise-error" style="display:none;background:#f44336;color:#fff;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:14px;"></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
               <div>
                 <label class="form-label">First Name *</label>
-                <input type="text" id="franchiseFirst" class="form-input" placeholder="FIRST NAME" required maxlength="127"/>
+                <input type="text" id="franchiseFirst" name="firstName" class="form-input" placeholder="FIRST NAME" required maxlength="127"/>
               </div>
               <div>
                 <label class="form-label">Last Name *</label>
-                <input type="text" id="franchiseLast" class="form-input" placeholder="LAST NAME" required maxlength="127"/>
+                <input type="text" id="franchiseLast" name="lastName" class="form-input" placeholder="LAST NAME" required maxlength="127"/>
               </div>
             </div>
             <div style="margin-bottom:16px;">
               <label class="form-label">Email Address *</label>
-              <input type="email" id="franchiseEmail" class="form-input" placeholder="EMAIL ADDRESS" required maxlength="255"/>
+              <input type="email" id="franchiseEmail" name="email" class="form-input" placeholder="EMAIL ADDRESS" required maxlength="255"/>
             </div>
             <div style="margin-bottom:16px;">
               <label class="form-label">Phone Number</label>
-              <input type="tel" id="franchisePhone" class="form-input" placeholder="PHONE NUMBER" maxlength="30"/>
+              <input type="tel" id="franchisePhone" name="phone" class="form-input" placeholder="PHONE NUMBER" maxlength="30"/>
             </div>
             <div style="margin-bottom:16px;">
               <label class="form-label">City *</label>
-              <input type="text" id="franchiseCity" class="form-input" placeholder="CITY" required maxlength="100"/>
+              <input type="text" id="franchiseCity" name="city" class="form-input" placeholder="CITY" required maxlength="100"/>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
               <div>
                 <label class="form-label">State *</label>
-                <select id="franchiseState" class="form-input" required style="cursor:pointer;">
+                <select id="franchiseState" name="state" class="form-input" required style="cursor:pointer;">
                   <option value="">Select State</option>
                   <option>Alabama</option><option>Alaska</option><option>Arizona</option>
                   <option>Arkansas</option><option>California</option><option>Colorado</option>
@@ -365,12 +367,12 @@
               </div>
               <div>
                 <label class="form-label">Zip Code</label>
-                <input type="text" id="franchiseZip" class="form-input" placeholder="ZIP CODE" maxlength="10"/>
+                <input type="text" id="franchiseZip" name="zip" class="form-input" placeholder="ZIP CODE" maxlength="10"/>
               </div>
             </div>
             <div style="margin-bottom:16px;">
               <label class="form-label">Investment Level</label>
-              <select id="franchiseInvestment" class="form-input" style="cursor:pointer;">
+              <select id="franchiseInvestment" name="investment" class="form-input" style="cursor:pointer;">
                 <option value="">Select investment range</option>
                 <option>$100,000 - $150,000</option>
                 <option>$150,000 - $250,000</option>
@@ -380,10 +382,18 @@
             </div>
             <div style="margin-bottom:20px;">
               <label class="form-label">Tell us about yourself</label>
-              <textarea id="franchiseMessage" class="form-textarea" placeholder="YOUR MESSAGE" style="min-height:100px;" maxlength="5000"></textarea>
+              <textarea id="franchiseMessage" name="message" class="form-textarea" placeholder="YOUR MESSAGE" style="min-height:100px;" maxlength="5000"></textarea>
             </div>
             <button type="submit" id="franchise-submit-btn" class="btn btn-teal" style="width:100%;font-size:18px;padding:14px;">SUBMIT</button>
           </form>
+          </div>
+          <div id="franchise-success" style="display:none;text-align:center;padding:40px 20px;">
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--teal-primary);display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 16 L14 22 L24 10" stroke="#0F272E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h2 style="font-family:'Norwester',sans-serif;font-size:28px;color:var(--text-heading);text-transform:uppercase;margin-bottom:8px;">Request Received!</h2>
+            <p style="font-size:16px;color:var(--text-body);max-width:400px;margin:0 auto;">Our franchise team will reach out to you soon. Thanks for your interest!</p>
+          </div>
         </div>
 
         <!-- Celebration photo placeholder -->
@@ -475,92 +485,6 @@
 
 <script src="../js/analytics.js"></script>
 <script src="../js/main.js"></script>
-<script>
-(function() {
-  var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
-  var API_URL   = 'https://websiteupgraderpro.com/api/contact/submit';
-
-  var form     = document.getElementById('franchiseForm');
-  var errorDiv = document.getElementById('franchise-error');
-  var btn      = document.getElementById('franchise-submit-btn');
-
-  if (!form) return;
-
-  function showError(msg) {
-    errorDiv.textContent = msg;
-    errorDiv.style.display = 'block';
-    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    errorDiv.style.display = 'none';
-
-    var firstName  = document.getElementById('franchiseFirst').value.trim();
-    var lastName   = document.getElementById('franchiseLast').value.trim();
-    var email      = document.getElementById('franchiseEmail').value.trim();
-    var phone      = document.getElementById('franchisePhone').value.trim();
-    var city       = document.getElementById('franchiseCity').value.trim();
-    var state      = document.getElementById('franchiseState').value;
-    var zip        = document.getElementById('franchiseZip').value.trim();
-    var investment = document.getElementById('franchiseInvestment').value;
-    var message    = document.getElementById('franchiseMessage').value.trim();
-
-    if (!firstName || !lastName || !email || !city || !state) {
-      showError('Please fill in all required fields.');
-      return;
-    }
-
-    var details = 'Location: ' + city + ', ' + state + (zip ? ' ' + zip : '');
-    if (investment) details += '\nInvestment Level: ' + investment;
-    if (message) details += '\n\n' + message;
-
-    btn.textContent = 'Submitting...';
-    btn.disabled = true;
-
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        clientId: CLIENT_ID,
-        name:    firstName + ' ' + lastName,
-        email:   email,
-        subject: 'Franchise Inquiry',
-        message: details,
-        phone:   phone || undefined,
-      }),
-    })
-      .then(function(res) {
-        if (res.ok) {
-          btn.textContent = 'Request Received!';
-          btn.style.background = '#4CAF50';
-          form.reset();
-          setTimeout(function() {
-            btn.textContent = 'SUBMIT';
-            btn.style.background = '';
-            btn.disabled = false;
-          }, 4000);
-        } else {
-          return res.json()
-            .then(function(data) {
-              showError(data.error || 'Something went wrong. Please try again.');
-            })
-            .catch(function() {
-              showError('Something went wrong. Please try again.');
-            })
-            .then(function() {
-              btn.textContent = 'SUBMIT';
-              btn.disabled = false;
-            });
-        }
-      })
-      .catch(function() {
-        showError('Network error. Please check your connection and try again.');
-        btn.textContent = 'SUBMIT';
-        btn.disabled = false;
-      });
-  });
-})();
-</script>
+<!-- Franchise form submission handled by initGenericForms() in main.js -->
 </body>
 </html>

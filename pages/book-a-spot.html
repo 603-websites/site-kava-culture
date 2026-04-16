@@ -85,10 +85,10 @@
   <section class="booking-hero">
     <div class="booking-hero-bg"></div>
     <div class="booking-hero-content">
-      <div style="font-family:'Arizonia',cursive;font-size:clamp(30px,5vw,60px);color:var(--teal-primary);margin-bottom:4px;">
+      <div class="font-script text-teal" style="font-size:clamp(30px,5vw,60px);margin-bottom:4px;">
         Bring Your Sound to
       </div>
-      <h1 style="font-family:'Norwester',sans-serif;font-size:clamp(48px,9vw,100px);color:white;text-transform:uppercase;line-height:0.95;letter-spacing:0.02em;margin-bottom:16px;">
+      <h1 class="font-norwester text-white text-upper" style="font-size:clamp(48px,9vw,100px);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px;">
         THE SPOT
       </h1>
       <div class="hero-badge">Live Music &bull; Local Artists &bull; Every Week</div>
@@ -109,7 +109,7 @@
   <section style="padding:80px 0;background:#fff;">
     <div class="container" style="text-align:center;">
       <span class="section-label animate-on-scroll">HOW IT WORKS</span>
-      <h2 class="animate-on-scroll" style="font-family:'Norwester',sans-serif;font-size:clamp(32px,5vw,50px);color:var(--text-heading);text-transform:uppercase;margin-bottom:50px;">
+      <h2 class="animate-on-scroll font-norwester text-dark text-upper" style="font-size:clamp(32px,5vw,50px);margin-bottom:50px;">
         THREE SIMPLE STEPS
       </h2>
 
@@ -170,7 +170,7 @@
   <section id="booking-form" style="background:#0F272E;padding:60px 0;">
     <div class="container" style="max-width:760px;">
       <div style="text-align:center;margin-bottom:40px;" class="animate-on-scroll">
-        <h2 style="font-family:'Norwester',sans-serif;font-size:clamp(28px,4vw,44px);color:var(--teal-primary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;">
+        <h2 class="font-norwester text-teal text-upper" style="font-size:clamp(28px,4vw,44px);letter-spacing:0.04em;margin-bottom:8px;">
           REQUEST A BOOKING
         </h2>
         <p style="font-size:16px;color:rgba(255,255,255,0.6);font-family:'Roboto Condensed',sans-serif;">
@@ -180,33 +180,33 @@
 
       <!-- Form -->
       <div id="booking-form-wrap" class="animate-on-scroll">
-        <form id="bookingForm" novalidate>
+        <form id="bookingForm" novalidate data-form-handler='{"apiPath":"/api/booking/request","successEl":"booking-success","errorEl":"booking-error","formWrap":"booking-form-wrap","loadingText":"Submitting..."}'>
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Band / Artist Name *</label>
-              <input type="text" class="form-input booking-input" id="bandName" placeholder="YOUR BAND NAME" maxlength="255" required/>
+              <input type="text" class="form-input booking-input" id="bandName" name="bandName" placeholder="YOUR BAND NAME" maxlength="255" required/>
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Contact Name *</label>
-              <input type="text" class="form-input booking-input" id="contactName" placeholder="YOUR NAME" maxlength="255" required/>
+              <input type="text" class="form-input booking-input" id="contactName" name="contactName" placeholder="YOUR NAME" maxlength="255" required/>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Contact Email *</label>
-              <input type="email" class="form-input booking-input" id="contactEmail" placeholder="EMAIL ADDRESS" maxlength="255" required/>
+              <input type="email" class="form-input booking-input" id="contactEmail" name="contactEmail" placeholder="EMAIL ADDRESS" maxlength="255" required/>
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Phone Number</label>
-              <input type="tel" class="form-input booking-input" id="contactPhone" placeholder="PHONE (OPTIONAL)" maxlength="30"/>
+              <input type="tel" class="form-input booking-input" id="contactPhone" name="contactPhone" placeholder="PHONE (OPTIONAL)" maxlength="30"/>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Genre / Style *</label>
-              <select class="form-input booking-input booking-select" id="genre" required>
+              <select class="form-input booking-input booking-select" id="genre" name="genre" required>
                 <option value="" disabled selected>SELECT GENRE</option>
                 <option value="Acoustic">Acoustic</option>
                 <option value="Rock">Rock</option>
@@ -221,18 +221,18 @@
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Band Size *</label>
-              <input type="number" class="form-input booking-input" id="bandSize" min="1" max="10" placeholder="NUMBER OF MEMBERS" required/>
+              <input type="number" class="form-input booking-input" id="bandSize" name="bandSize" min="1" max="10" placeholder="NUMBER OF MEMBERS" required/>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Preferred Date *</label>
-              <input type="date" class="form-input booking-input" id="preferredDate" required/>
+              <input type="date" class="form-input booking-input" id="preferredDate" name="preferredDate" required/>
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Preferred Time *</label>
-              <select class="form-input booking-input booking-select" id="preferredTime" required>
+              <select class="form-input booking-input booking-select" id="preferredTime" name="preferredTime" required>
                 <option value="" disabled selected>SELECT TIME</option>
                 <option value="6:00 PM">6:00 PM</option>
                 <option value="7:00 PM">7:00 PM</option>
@@ -245,17 +245,17 @@
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Alternate Date</label>
-              <input type="date" class="form-input booking-input" id="alternateDate"/>
+              <input type="date" class="form-input booking-input" id="alternateDate" name="alternateDate"/>
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Link to Music Sample</label>
-              <input type="url" class="form-input booking-input" id="sampleLink" placeholder="SPOTIFY, YOUTUBE, ETC." maxlength="500"/>
+              <input type="url" class="form-input booking-input" id="sampleLink" name="sampleLink" placeholder="SPOTIFY, YOUTUBE, ETC." maxlength="500"/>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" style="color:rgba(255,255,255,0.7);">Message / Additional Info</label>
-            <textarea class="form-textarea booking-input" id="message" placeholder="TELL US ABOUT YOUR ACT, SPECIAL REQUIREMENTS, ETC." rows="4" maxlength="2000"></textarea>
+            <textarea class="form-textarea booking-input" id="message" name="message" placeholder="TELL US ABOUT YOUR ACT, SPECIAL REQUIREMENTS, ETC." rows="4" maxlength="2000"></textarea>
           </div>
 
           <!-- Error display -->
@@ -277,7 +277,7 @@
             <path d="M10 20 L17 27 L30 12" stroke="#0F272E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h2 style="font-family:'Norwester',sans-serif;font-size:clamp(28px,4vw,40px);color:var(--teal-primary);text-transform:uppercase;margin-bottom:12px;">
+        <h2 class="font-norwester text-teal text-upper" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px;">
           Request Submitted!
         </h2>
         <p style="font-size:18px;color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 8px;font-family:'Roboto Condensed',sans-serif;">
@@ -304,7 +304,7 @@
     <div class="container" style="max-width:900px;">
       <div style="text-align:center;margin-bottom:50px;" class="animate-on-scroll">
         <span class="section-label">GOOD TO KNOW</span>
-        <h2 style="font-family:'Norwester',sans-serif;font-size:clamp(28px,4vw,44px);color:var(--text-heading);text-transform:uppercase;">
+        <h2 class="font-norwester text-dark text-upper" style="font-size:clamp(28px,4vw,44px);">
           WHAT TO EXPECT
         </h2>
       </div>
@@ -389,7 +389,7 @@
 
       <!-- Contact for questions -->
       <div class="animate-on-scroll" style="margin-top:60px;text-align:center;padding:40px;background:#f9f9f9;border-radius:16px;">
-        <h3 style="font-family:'Norwester',sans-serif;font-size:24px;color:var(--text-heading);text-transform:uppercase;margin-bottom:12px;">
+        <h3 class="font-norwester text-dark text-upper" style="font-size:24px;margin-bottom:12px;">
           HAVE QUESTIONS?
         </h3>
         <p style="font-size:16px;color:var(--text-body);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;">
@@ -466,136 +466,42 @@
 <script src="../js/main.js"></script>
 <script src="../js/analytics.js"></script>
 
-<!-- Booking form submission handler -->
+<!-- Booking form submission handled by initGenericForms() in main.js -->
+<!-- Booking analytics: track form submission event on success -->
 <script>
 (function() {
-  var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
-  var API_URL   = 'https://websiteupgraderpro.com/api/booking/request';
-  var API_BASE  = 'https://websiteupgraderpro.com';
-
-  var form       = document.getElementById('bookingForm');
-  var formWrap   = document.getElementById('booking-form-wrap');
-  var successDiv = document.getElementById('booking-success');
-  var errorDiv   = document.getElementById('booking-error');
-  var submitBtn  = document.getElementById('booking-submit-btn');
-
+  var form = document.getElementById('bookingForm');
   if (!form) return;
-
+  var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
+  var API_BASE  = 'https://websiteupgraderpro.com';
   function getSessionId() {
     var key = 'spot_sid';
     var sid = sessionStorage.getItem(key);
-    if (!sid) {
-      sid = Math.random().toString(36).slice(2) + Date.now().toString(36);
-      sessionStorage.setItem(key, sid);
-    }
+    if (!sid) { sid = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem(key, sid); }
     return sid;
   }
-
-  function showError(msg) {
-    errorDiv.textContent = msg;
-    errorDiv.style.display = 'block';
-    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // Listen for success (formWrap hidden = submission succeeded)
+  var wrap = document.getElementById('booking-form-wrap');
+  if (wrap) {
+    new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.attributeName === 'style' && wrap.style.display === 'none') {
+          try {
+            fetch(API_BASE + '/api/analytics/events', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                clientId: CLIENT_ID, sessionId: getSessionId(),
+                eventType: 'form_submission', eventName: 'Booking Request',
+                properties: { path: location.pathname, formName: 'booking_request' }
+              }),
+              keepalive: true
+            }).catch(function() {});
+          } catch (e) {}
+        }
+      });
+    }).observe(wrap, { attributes: true });
   }
-
-  function hideError() {
-    errorDiv.style.display = 'none';
-  }
-
-  function trackBookingSubmission() {
-    try {
-      fetch(API_BASE + '/api/analytics/events', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          clientId:  CLIENT_ID,
-          sessionId: getSessionId(),
-          eventType: 'form_submission',
-          eventName: 'Booking Request',
-          properties: {
-            path:     location.pathname,
-            formName: 'booking_request',
-          },
-        }),
-        keepalive: true,
-      }).catch(function() {});
-    } catch (e) {}
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    hideError();
-
-    // Gather values
-    var bandName      = document.getElementById('bandName').value.trim();
-    var contactName   = document.getElementById('contactName').value.trim();
-    var contactEmail  = document.getElementById('contactEmail').value.trim();
-    var contactPhone  = document.getElementById('contactPhone').value.trim();
-    var genre         = document.getElementById('genre').value;
-    var bandSize      = parseInt(document.getElementById('bandSize').value, 10);
-    var preferredDate = document.getElementById('preferredDate').value;
-    var preferredTime = document.getElementById('preferredTime').value;
-    var alternateDate = document.getElementById('alternateDate').value;
-    var sampleLink    = document.getElementById('sampleLink').value.trim();
-    var message       = document.getElementById('message').value.trim();
-
-    // Validate required fields
-    if (!bandName) { showError('Please enter your band or artist name.'); return; }
-    if (!contactName) { showError('Please enter a contact name.'); return; }
-    if (!contactEmail) { showError('Please enter a valid email address.'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) { showError('Please enter a valid email address.'); return; }
-    if (!genre) { showError('Please select a genre.'); return; }
-    if (!bandSize || bandSize < 1 || bandSize > 10) { showError('Please enter a band size between 1 and 10.'); return; }
-    if (!preferredDate) { showError('Please select a preferred date.'); return; }
-    if (!preferredTime) { showError('Please select a preferred time.'); return; }
-
-    // Build payload
-    var payload = {
-      clientId:      CLIENT_ID,
-      bandName:      bandName,
-      contactName:   contactName,
-      contactEmail:  contactEmail,
-      contactPhone:  contactPhone || null,
-      genre:         genre,
-      bandSize:      bandSize,
-      preferredDate: preferredDate,
-      preferredTime: preferredTime,
-      alternateDate: alternateDate || null,
-      message:       message || null,
-      sampleLink:    sampleLink || null,
-    };
-
-    // Disable button
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-    .then(function(res) {
-      if (res.ok) {
-        // Track analytics
-        trackBookingSubmission();
-        // Show success
-        formWrap.style.display = 'none';
-        successDiv.style.display = 'block';
-        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        return res.json().then(function(data) {
-          throw new Error(data.message || 'Something went wrong. Please try again.');
-        }).catch(function(err) {
-          if (err.message) throw err;
-          throw new Error('Something went wrong. Please try again.');
-        });
-      }
-    })
-    .catch(function(err) {
-      showError(err.message || 'Could not submit your request. Please check your connection and try again.');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Booking Request';
-    });
-  });
 })();
 </script>
 </body>

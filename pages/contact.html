@@ -138,36 +138,36 @@
       <!-- Contact Form -->
       <div class="contact-form animate-on-scroll">
         <div id="contact-form-wrap">
-          <form id="contactForm" novalidate>
+          <form id="contactForm" novalidate data-form-handler='{"apiPath":"/api/contact/submit","successEl":"contact-success","errorEl":"contact-error","formWrap":"contact-form-wrap","loadingText":"Sending..."}'>
             <div class="form-row">
               <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label">First Name *</label>
-                <input type="text" class="form-input" id="contactFirstName" placeholder="FIRST NAME" maxlength="127" required/>
+                <input type="text" class="form-input" id="contactFirstName" name="firstName" placeholder="FIRST NAME" maxlength="127" required/>
               </div>
               <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label">Last Name *</label>
-                <input type="text" class="form-input" id="contactLastName" placeholder="LAST NAME" maxlength="127" required/>
+                <input type="text" class="form-input" id="contactLastName" name="lastName" placeholder="LAST NAME" maxlength="127" required/>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Email Address *</label>
-              <input type="email" class="form-input" id="contactEmailAddr" placeholder="EMAIL ADDRESS" maxlength="255" required/>
+              <input type="email" class="form-input" id="contactEmailAddr" name="email" placeholder="EMAIL ADDRESS" maxlength="255" required/>
             </div>
 
             <div class="form-group">
               <label class="form-label">Subject *</label>
-              <input type="text" class="form-input" id="contactSubject" placeholder="SUBJECT" maxlength="255" required/>
+              <input type="text" class="form-input" id="contactSubject" name="subject" placeholder="SUBJECT" maxlength="255" required/>
             </div>
 
             <div class="form-group">
               <label class="form-label">Your Message *</label>
-              <textarea class="form-textarea" id="contactMessage" placeholder="YOUR MESSAGE" maxlength="5000" required></textarea>
+              <textarea class="form-textarea" id="contactMessage" name="message" placeholder="YOUR MESSAGE" maxlength="5000" required></textarea>
             </div>
 
             <div id="contact-error" style="display:none;background:rgba(220,50,50,0.1);border:1px solid rgba(220,50,50,0.3);border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#d32f2f;font-family:'Roboto Condensed',sans-serif;font-size:14px;text-align:center;"></div>
 
-            <div style="text-align:center;">
+            <div class="text-center">
               <button type="submit" class="btn btn-teal form-submit-btn" id="contact-submit-btn" style="font-size:18px;padding:14px 48px;min-width:200px;">
                 Submit Form
               </button>
@@ -185,7 +185,7 @@
 
       <!-- Map embed placeholder -->
       <div class="map-embed animate-on-scroll">
-        <div style="text-align:center;">
+        <div class="text-center">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(15,39,46,0.4)" stroke-width="2" style="margin:0 auto 10px;display:block;">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
             <circle cx="12" cy="10" r="3"/>
@@ -316,69 +316,6 @@
 <script src="../js/main.js"></script>
 <script src="../js/analytics.js"></script>
 
-<!-- Contact form submission handler -->
-<script>
-(function() {
-  var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
-  var API_URL   = 'https://websiteupgraderpro.com/api/contact/submit';
-
-  var form       = document.getElementById('contactForm');
-  var formWrap   = document.getElementById('contact-form-wrap');
-  var successDiv = document.getElementById('contact-success');
-  var errorDiv   = document.getElementById('contact-error');
-  var submitBtn  = document.getElementById('contact-submit-btn');
-
-  if (!form) return;
-
-  function showError(msg) {
-    errorDiv.textContent = msg;
-    errorDiv.style.display = 'block';
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    errorDiv.style.display = 'none';
-
-    var firstName = document.getElementById('contactFirstName').value.trim();
-    var lastName  = document.getElementById('contactLastName').value.trim();
-    var email     = document.getElementById('contactEmailAddr').value.trim();
-    var subject   = document.getElementById('contactSubject').value.trim();
-    var message   = document.getElementById('contactMessage').value.trim();
-
-    if (!firstName || !lastName) { showError('Please enter your name.'); return; }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Please enter a valid email address.'); return; }
-    if (!subject) { showError('Please enter a subject.'); return; }
-    if (!message) { showError('Please enter your message.'); return; }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        clientId: CLIENT_ID,
-        name: firstName + ' ' + lastName,
-        email: email,
-        subject: subject,
-        message: message,
-      }),
-    })
-    .then(function(res) {
-      if (res.ok) {
-        formWrap.style.display = 'none';
-        successDiv.style.display = 'block';
-      } else {
-        throw new Error('Failed to send');
-      }
-    })
-    .catch(function() {
-      showError('Could not send your message. Please try again or email us directly.');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Form';
-    });
-  });
-})();
-</script>
+<!-- Contact form submission handled by initGenericForms() in main.js -->
 </body>
 </html>

@@ -427,6 +427,86 @@ function updateCopyrightYear() {
 }
 
 /* -------------------------------------------------------
+   11. GENERIC FORM HANDLER — replaces inline form scripts
+------------------------------------------------------- */
+function initGenericForms() {
+  const API_BASE = 'https://websiteupgraderpro.com';
+  const CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
+
+  document.querySelectorAll('[data-form-handler]').forEach(form => {
+    const config = JSON.parse(form.dataset.formHandler);
+    const apiPath = config.apiPath;
+    const successElId = config.successEl;
+    const errorElId = config.errorEl;
+    const formWrapId = config.formWrap;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const errorEl = errorElId ? document.getElementById(errorElId) : null;
+    const successEl = successElId ? document.getElementById(successElId) : null;
+    const formWrap = formWrapId ? document.getElementById(formWrapId) : null;
+
+    if (!submitBtn) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (errorEl) errorEl.style.display = 'none';
+
+      // Collect all form inputs into payload
+      const payload = { clientId: CLIENT_ID };
+      const inputs = form.querySelectorAll('input, select, textarea');
+      let valid = true;
+
+      inputs.forEach(input => {
+        if (!input.name) return;
+        const val = input.value.trim();
+        if (input.required && !val) {
+          valid = false;
+        }
+        // Basic email validation
+        if (input.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          valid = false;
+        }
+        payload[input.name] = val;
+      });
+
+      if (!valid) {
+        if (errorEl) {
+          errorEl.textContent = 'Please fill in all required fields with valid information.';
+          errorEl.style.display = 'block';
+        }
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = config.loadingText || 'Sending...';
+
+      fetch(API_BASE + apiPath, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      .then(res => {
+        if (res.ok) {
+          if (formWrap) formWrap.style.display = 'none';
+          if (successEl) successEl.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error('Request failed');
+        }
+      })
+      .catch(() => {
+        if (errorEl) {
+          errorEl.textContent = config.errorMessage || 'Something went wrong. Please try again.';
+          errorEl.style.display = 'block';
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      });
+    });
+  });
+}
+
+/* -------------------------------------------------------
    INIT ALL
 ------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
@@ -441,5 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setActiveNavLink();
   initNewsletterFloat();
   initReviewCarousel();
+  initGenericForms();
+  if (typeof initDynamicCalendar === 'function') initDynamicCalendar();
   updateCopyrightYear();
 });
