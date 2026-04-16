@@ -196,15 +196,63 @@ function initEmailSignup() {
 }
 
 /* -------------------------------------------------------
-   11. ACTIVE NAV LINK highlight
+   11. ACTIVE NAV LINK highlight (mobile + desktop)
 ------------------------------------------------------- */
 function setActiveNavLink() {
   const path = window.location.pathname;
-  document.querySelectorAll('.nav-overlay a').forEach(a => {
-    if (a.getAttribute('href') && path.endsWith(a.getAttribute('href').replace(/^\.\.\//, '').replace(/\/$/, '') || '/')) {
+  document.querySelectorAll('.nav-overlay a, .desktop-nav a:not(.nav-cta)').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && path.endsWith(href.replace(/^\.\.\//, '').replace(/\/$/, '') || '/')) {
+      a.classList.add('active');
       a.style.color = 'var(--teal-link)';
     }
   });
+}
+
+/* -------------------------------------------------------
+   12. NEWSLETTER FLOATING CTA — carousel text
+------------------------------------------------------- */
+function initNewsletterFloat() {
+  var messages = ['Subscribe to our Newsletter', 'Live Music Events'];
+  var idx = 0;
+
+  var bar = document.createElement('div');
+  bar.className = 'newsletter-float';
+  bar.setAttribute('role', 'button');
+  bar.setAttribute('aria-label', 'Subscribe to newsletter');
+
+  bar.innerHTML =
+    '<div class="newsletter-float-inner">' +
+      '<svg class="newsletter-float-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>' +
+      '<div class="newsletter-float-text"><span>' + messages[0] + '</span></div>' +
+      '<span class="newsletter-float-arrow">\u2191</span>' +
+    '</div>';
+
+  document.body.appendChild(bar);
+
+  bar.addEventListener('click', function() {
+    var signup = document.querySelector('.footer-signup');
+    if (signup) {
+      signup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var input = signup.querySelector('input[type="email"]');
+      if (input) setTimeout(function() { input.focus(); }, 600);
+    }
+  });
+
+  setInterval(function() {
+    var textEl = bar.querySelector('.newsletter-float-text span');
+    if (!textEl) return;
+    textEl.classList.add('slide-up');
+    setTimeout(function() {
+      idx = (idx + 1) % messages.length;
+      textEl.textContent = messages[idx];
+      textEl.classList.remove('slide-up');
+      textEl.classList.add('slide-down');
+      // Force reflow then remove slide-down to trigger transition
+      void textEl.offsetWidth;
+      textEl.classList.remove('slide-down');
+    }, 500);
+  }, 3500);
 }
 
 /* -------------------------------------------------------
@@ -218,6 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initEmailSignup();
   setActiveNavLink();
+  initNewsletterFloat();
 });
 
 /* CSS for scroll animations (injected once) */

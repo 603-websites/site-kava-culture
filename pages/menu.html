@@ -4,6 +4,11 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Menu — The Spot Kava Bar &amp; Music · Nashua NH</title>
+  <meta name="description" content="The Spot menu — premium kava, craft coffee, creative mocktails, and food from Joanne's Kitchen. Alcohol-free drinks and bites in Nashua, NH."/>
+  <meta property="og:title" content="Our Menu — The Spot Nashua"/>
+  <meta property="og:description" content="The Spot menu — premium kava, craft coffee, creative mocktails, and food from Joanne's Kitchen. Alcohol-free drinks and bites in Nashua, NH."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://thespotnashua.com/pages/menu.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Arizonia&display=swap" rel="stylesheet"/>
@@ -28,6 +33,14 @@
         <span class="logo-sub">Kava Bar &amp; Music &bull; Nashua NH</span>
       </div>
     </a>
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <a href="../index.html">Home</a>
+      <a href="live-music.html">Live Music</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="live-music.html" class="nav-cta">View Calendar</a>
+    </nav>
     <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -35,279 +48,134 @@
 <nav class="nav-overlay" aria-label="Main Navigation">
   <ul>
     <li><a href="../index.html">Home</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="book-a-spot.html">Book a Spot</a></li>
-    <li>
-      <div class="nav-dropdown-label">Explore <span class="nav-arrow">▾</span></div>
-      <ul class="nav-sub">
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </li>
-    <li>
-      <div class="nav-dropdown-label">Contact <span class="nav-arrow">▾</span></div>
-      <ul class="nav-sub">
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="#">Jobs</a></li>
-        <!-- Login removed — access via footer Admin link -->
-      </ul>
-    </li>
+    <li><a href="live-music.html">Live Music</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-wholesale-btn">
-    <a href="menu.html" class="btn btn-dark" style="display:block;text-align:center;">View Menu</a>
+    <a href="live-music.html" class="btn btn-dark" style="display:block;text-align:center;">View Calendar</a>
   </div>
 </nav>
 <div class="nav-overlay-backdrop"></div>
 
 <!-- PAGE -->
 <main class="page-wrap">
-  <section class="menu-section">
+
+  <!-- Hero -->
+  <section class="franchise-hero" style="min-height:340px;">
+    <div class="franchise-hero-bg-texture"></div>
+    <div class="franchise-hero-blob"></div>
+    <div class="franchise-hero-content">
+      <a href="../index.html" class="logo-wrap franchise-logo-white" style="justify-content:center;margin-bottom:20px;">
+        <svg width="60" height="60" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 12 C42 20 48 28 40 38 C32 28 38 20 40 12Z" fill="white"/>
+          <path d="M40 38 C40 38 28 32 24 22 C20 12 32 8 40 12 C48 16 52 28 40 38Z" fill="white" opacity="0.7"/>
+          <path d="M40 38 C40 38 52 32 56 22 C60 12 48 8 40 12 C32 16 28 28 40 38Z" fill="white" opacity="0.85"/>
+          <path d="M40 38 L40 68" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="logo-text-block">
+          <span class="logo-main" style="color:white;font-size:24px;">The Spot</span>
+          <span class="logo-sub" style="color:var(--teal-primary);">Kava Bar &amp; Music &bull; Nashua NH</span>
+        </div>
+      </a>
+      <div style="font-family:'Norwester',sans-serif;font-size:clamp(20px,3vw,32px);color:white;text-transform:uppercase;letter-spacing:0.1em;margin-top:10px;">
+        OUR MENU
+      </div>
+      <div style="font-family:'Arizonia',cursive;font-size:clamp(30px,5vw,60px);color:var(--teal-primary);margin:10px 0;">
+        Craft Your Experience
+      </div>
+      <div style="font-size:16px;color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto;">
+        Kava, coffee, mocktails &amp; food at 217 Main Street Nashua
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Category Cards -->
+  <section class="menu-cards-section">
     <div class="container">
+      <div class="menu-cards-grid animate-on-scroll">
 
-      <!-- Menu Block 1 — Kava & Elixirs -->
-      <div class="menu-img-block">
-        <div class="menu-content">
-
-          <div class="menu-logo-top">
-            <div style="font-family:'Norwester',sans-serif;font-size:13px;color:var(--teal-primary);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;">THE SPOT &bull; NASHUA NH &bull; KAVA BAR &amp; MUSIC</div>
-            <div class="menu-tagline">Craft Your Experience</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.5);font-style:italic;">upgrade to premium crushed leaf ++ &nbsp;|&nbsp; upgrade to premium fiji ++</div>
+        <!-- Card 1: Coffee -->
+        <div class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-icon">&#9749;</span>
+            <span class="menu-card-title">Coffee</span>
           </div>
-
-          <div class="menu-grid">
-
-            <!-- Kava & Elixirs -->
-            <div>
-              <div class="menu-step-heading">🌿 Step 1: Pick Your Feeling</div>
-              <div class="menu-item"><span class="menu-item-dot"></span>🌿 MOOD + JOY</div>
-              <div class="menu-item"><span class="menu-item-dot"></span>❤️ RELAX + MOVE</div>
-              <div class="menu-item"><span class="menu-item-dot"></span>⚪ ENERGY + FOCUS</div>
-              <div class="menu-item"><span class="menu-item-dot"></span>💛 STAMINA + STRENGTH</div>
-              <div class="menu-item"><span class="menu-item-dot"></span>🔵 KAVA: CALM + SOCIAL</div>
-
-              <br/>
-              <div class="menu-step-heading">🧃 Step 2: Pick Your Flavors</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">JUICES</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Mango</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Orange</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Lemonade</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Peach</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Apple</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Lime</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Pineapple</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Watermelon</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Lemon</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">ORGANIC FLAVORS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Raspberry</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Agave</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Chocolate</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Hazelnut</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Vanilla</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Caramel</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">PLANT POWER</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Almond Milk</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Coconut Milk</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Oat Milk</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Almond Cream</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Coconut Cream</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Seasonal Options</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">PREMIUM ADD-ONS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Kava Boost Shot</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Fiji Lift</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Energy Uplift 30mg</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Tincture Shot</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Isolate Shot</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Elixir Shot</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Top Shelf Shot</div>
-              </div>
-            </div>
-
-            <!-- Coffee & Tea -->
-            <div>
-              <div class="menu-step-heading">☕ Coffee + Espresso</div>
-              <div style="font-size:11px;color:var(--teal-primary);letter-spacing:0.1em;margin-bottom:10px;">ALWAYS FAIR TRADE BEANS</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">COLD BREW</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Slow steeped in house</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Regular | Large</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">LATTE</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Choice of flavor + milk</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Hot or Iced — Regular | Large</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title" style="color:var(--teal-primary);font-size:18px;">★ KAVA LATTE</div>
-                <div style="font-size:13px;color:rgba(255,255,255,0.7);padding:4px 0;">Kava blended into your favorite latte — iced only</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">FRENCH PRESS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Slow steeped + served hot</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">CAPPUCCINO</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Espresso + foam</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Single | Double</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">AMERICANO / ESPRESSO</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Americano: espresso + water</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Espresso: single | double</div>
-              </div>
-
-              <br/>
-              <div class="menu-step-heading">🍵 Tea + Herbal Blends</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">LOOSE LEAF HERBAL TEA</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Rotating artisan blends</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">MATCHA LATTE</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Ceremonial grade matcha</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Hot or iced + choice of milk</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">GOLDEN LATTE</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Turmeric + black pepper</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Hot or iced + choice of milk</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">SWEETENERS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Honey</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Monk Fruit</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Simple Syrup</div>
-              </div>
-            </div>
-
+          <div class="menu-card-body">
+            <div class="menu-card-row"><span class="menu-card-name">Espresso</span><span class="menu-card-price">$3.50</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Double Espresso</span><span class="menu-card-price">$4.50</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Americano</span><span class="menu-card-price">$4.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Latte</span><span class="menu-card-price">$5.50</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Cappuccino</span><span class="menu-card-price">$5.50</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Cold Brew</span><span class="menu-card-price">$5.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Mocha</span><span class="menu-card-price">$6.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Matcha Latte</span><span class="menu-card-price">$6.00</span></div>
           </div>
         </div>
+
+        <!-- Card 2: Kava -->
+        <div class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-icon">&#127807;</span>
+            <span class="menu-card-title">Kava</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-row"><span class="menu-card-name">Traditional Shell</span><span class="menu-card-price">$8.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Double Shell</span><span class="menu-card-price">$14.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Kava Flight <span class="menu-card-desc">(3 varieties)</span></span><span class="menu-card-price">$18.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Kava Colada <span class="menu-card-desc">(coconut + kava)</span></span><span class="menu-card-price">$10.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Kava Chai <span class="menu-card-desc">(spiced kava)</span></span><span class="menu-card-price">$10.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Kratom Shot</span><span class="menu-card-price">$12.00</span></div>
+          </div>
+        </div>
+
+        <!-- Card 3: Mocktails -->
+        <div class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-icon">&#127865;</span>
+            <span class="menu-card-title">Mocktails</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-row"><span class="menu-card-name">Tropical Sunset <span class="menu-card-desc">(mango, passion fruit, lime)</span></span><span class="menu-card-price">$7.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Berry Bliss <span class="menu-card-desc">(mixed berry, mint, soda)</span></span><span class="menu-card-price">$7.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Ginger Mule <span class="menu-card-desc">(ginger beer, lime, bitters)</span></span><span class="menu-card-price">$7.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Cucumber Cooler <span class="menu-card-desc">(cucumber, mint, tonic)</span></span><span class="menu-card-price">$7.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Lavender Lemonade</span><span class="menu-card-price">$6.50</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Sparkling Hibiscus</span><span class="menu-card-price">$6.50</span></div>
+          </div>
+        </div>
+
+        <!-- Card 4: Food -->
+        <div class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-icon">&#127860;</span>
+            <span class="menu-card-title">Food</span>
+            <span class="menu-card-subtitle">Powered by Joanne's Kitchen &middot; Dine-In &amp; Pickup Only</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-row"><span class="menu-card-name">Chicken Quesadilla</span><span class="menu-card-price">$10.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Loaded Nachos</span><span class="menu-card-price">$12.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Hummus &amp; Pita Plate</span><span class="menu-card-price">$8.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Acai Bowl</span><span class="menu-card-price">$11.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Avocado Toast</span><span class="menu-card-price">$9.00</span></div>
+            <div class="menu-card-row"><span class="menu-card-name">Banana Bread <span class="menu-card-desc">(house-made)</span></span><span class="menu-card-price">$4.00</span></div>
+          </div>
+          <div class="menu-card-note">
+            All food items are prepared by Joanne's Kitchen and served at The Spot. Dine-in and pickup only &mdash; no delivery available.
+          </div>
+        </div>
+
       </div>
 
-      <!-- Menu Block 2 — Kava & Mocktails -->
-      <div class="menu-img-block">
-        <div class="menu-content">
-          <div style="text-align:center;margin-bottom:30px;">
-            <div class="menu-tagline">The Kava Experience</div>
-            <div style="font-size:13px;color:rgba(255,255,255,0.5);">Traditional preparation, modern vibes</div>
-          </div>
-
-          <div class="menu-grid">
-            <div>
-              <div class="menu-step-heading">🥥 Traditional Kava</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">PREMIUM FIJI KAVA</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Traditionally prepared</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Served in coconut shell</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Regular | Strong | Extra Strong</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">CRUSHED LEAF KAVA</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Premium upgrade option</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Richer, earthier flavor</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">KAVA SHOTS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Tincture Shot</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Isolate Shot</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Top Shelf Shot</div>
-              </div>
-
-              <br/>
-              <div class="menu-step-heading">🍹 Mocktails</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">CRAFT MOCKTAILS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Rotating seasonal menu</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Fruit-forward &amp; herbaceous</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Ask your bartender for today's list</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">SPARKLING ELIXIRS</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Botanicals on tap — carbonated</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Choose your vibe + flavor</div>
-              </div>
-            </div>
-
-            <div>
-              <div class="menu-step-heading">🌿 Botanical Elixirs On Tap</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title" style="color:#f5f5f5;">WHITE VEIN — ENERGY + FOCUS</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#f5f5f5;"></span>Energizing, promotes clear focus</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#f5f5f5;"></span>Coffee replacement</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title" style="color:#4CAF50;">GREEN VEIN — MOOD + JOY</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#4CAF50;"></span>Mood boosting, euphoric</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#4CAF50;"></span>Feel-good endorphins</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title" style="color:#e57373;">RED VEIN — RELAX + MOVE</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#e57373;"></span>Muscle relaxation</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#e57373;"></span>Eases tension and aches</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title" style="color:#FFD700;">YELLOW VEIN — STRENGTH + STAMINA</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#FFD700;"></span>Endurance support</div>
-                <div class="menu-item"><span class="menu-item-dot" style="background:#FFD700;"></span>Athletic performance</div>
-              </div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title" style="color:var(--teal-primary);">KAVA — CALM + SOCIAL</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Traditional kava root</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Natural calm, social ease</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Zero alcohol</div>
-              </div>
-
-              <br/>
-              <div class="menu-step-heading">🍴 Tasty Bites</div>
-
-              <div class="menu-category">
-                <div class="menu-cat-title">LIGHT BITES</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Rotating food menu</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Snacks &amp; small plates</div>
-                <div class="menu-item"><span class="menu-item-dot"></span>Ask your bartender for today's menu</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="text-align:center;margin-top:30px;padding:20px;border-top:1px solid rgba(137,227,235,0.2);">
-            <div style="font-family:'Norwester',sans-serif;font-size:13px;color:var(--teal-primary);letter-spacing:0.15em;">ALL ITEMS MADE WITH LOVE &bull; ZERO ALCOHOL &bull; OPEN DAILY 3PM–11PM</div>
-          </div>
-        </div>
+      <!-- Bottom tagline -->
+      <div class="menu-cards-footer animate-on-scroll">
+        ALL ITEMS MADE WITH LOVE &bull; ZERO ALCOHOL &bull; OPEN DAILY 3PM&ndash;11PM
       </div>
 
     </div>
   </section>
+
 </main>
 
 <!-- FOOTER -->
@@ -339,7 +207,10 @@
           <ul>
             <li><a href="contact.html">217 Main Street</a></li>
             <li><a href="contact.html">Nashua, NH 03060</a></li>
-            <li>Open Daily 3PM–11PM</li>
+            <li><a href="tel:6037184732">(603) 718-4732</a></li>
+            <li>Mon–Thu: 3PM–11PM</li>
+            <li>Fri–Sat: 3PM–1AM</li>
+            <li>Sun: Closed</li>
           </ul>
         </div>
       </div>
@@ -347,8 +218,8 @@
       <div class="footer-bottom">
         <div class="social-row">
           <a href="https://instagram.com/thespotnashua" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn social-instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-          <a href="#" aria-label="Facebook" class="social-btn social-facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-          <a href="#" aria-label="TikTok" class="social-btn social-tiktok"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.08a4.85 4.85 0 01-1-.39z"/></svg></a>
+          <a href="https://www.facebook.com/p/The-Spot-61572943945372/" target="_blank" rel="noopener" aria-label="Facebook" class="social-btn social-facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" aria-label="TikTok — Coming Soon" title="Coming Soon" class="social-btn social-tiktok"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.08a4.85 4.85 0 01-1-.39z"/></svg></a>
         </div>
         <p class="footer-copyright">&copy; 2024–26 The Spot Kava Bar &amp; Music | All Rights Reserved | <a href="#" style="color:rgba(255,255,255,0.5);">Privacy Policy</a> | <a href="https://www.websiteupgraderpro.com/login" style="color:rgba(255,255,255,0.35);">Admin</a> | Designed by 603 Websites</p>
       </div>
