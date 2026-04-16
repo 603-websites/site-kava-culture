@@ -256,6 +256,148 @@ function initNewsletterFloat() {
 }
 
 /* -------------------------------------------------------
+   13. REVIEW CAROUSEL
+------------------------------------------------------- */
+function initReviewCarousel() {
+  var viewport = document.querySelector('.review-carousel-viewport');
+  var track = document.querySelector('.review-carousel-track');
+  var cards = document.querySelectorAll('.review-card');
+  var prevBtn = document.querySelector('.review-arrow-prev');
+  var nextBtn = document.querySelector('.review-arrow-next');
+  var dotsContainer = document.querySelector('.review-dots');
+
+  if (!track || !cards.length || !viewport) return;
+
+  var currentIndex = 0;
+  var autoTimer = null;
+
+  function getCardsPerView() {
+    var w = window.innerWidth;
+    if (w <= 600) return 1;
+    if (w <= 900) return 2;
+    return 3;
+  }
+
+  function getMaxIndex() {
+    var perView = getCardsPerView();
+    return Math.max(0, cards.length - perView);
+  }
+
+  function updateTrack() {
+    var perView = getCardsPerView();
+    var cardWidthPercent = 100 / perView;
+
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].style.flex = '0 0 ' + cardWidthPercent + '%';
+    }
+
+    var offset = -(currentIndex * cardWidthPercent);
+    track.style.transform = 'translateX(' + offset + '%)';
+
+    updateDots();
+  }
+
+  function buildDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    var maxIdx = getMaxIndex();
+    var perView = getCardsPerView();
+    var totalDots = maxIdx + 1;
+
+    for (var i = 0; i < totalDots; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'review-dot' + (i === currentIndex ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to review group ' + (i + 1));
+      dot.dataset.index = i;
+      dot.addEventListener('click', function() {
+        goTo(parseInt(this.dataset.index));
+        restartAuto();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    if (!dotsContainer) return;
+    var dots = dotsContainer.querySelectorAll('.review-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === currentIndex);
+    }
+  }
+
+  function goTo(idx) {
+    var maxIdx = getMaxIndex();
+    currentIndex = Math.max(0, Math.min(idx, maxIdx));
+    updateTrack();
+  }
+
+  function advance() {
+    var maxIdx = getMaxIndex();
+    if (currentIndex >= maxIdx) {
+      goTo(0);
+    } else {
+      goTo(currentIndex + 1);
+    }
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(advance, 5000);
+  }
+
+  function stopAuto() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  function restartAuto() {
+    stopAuto();
+    startAuto();
+  }
+
+  // Arrow events
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      goTo(currentIndex - 1);
+      restartAuto();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      goTo(currentIndex + 1);
+      restartAuto();
+    });
+  }
+
+  // Pause on hover
+  var wrap = document.querySelector('.review-carousel-wrap');
+  if (wrap) {
+    wrap.addEventListener('mouseenter', stopAuto);
+    wrap.addEventListener('mouseleave', startAuto);
+  }
+
+  // Handle resize
+  var resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      if (currentIndex > getMaxIndex()) {
+        currentIndex = getMaxIndex();
+      }
+      buildDots();
+      updateTrack();
+    }, 150);
+  });
+
+  // Init
+  buildDots();
+  updateTrack();
+  startAuto();
+}
+
+/* -------------------------------------------------------
    INIT ALL
 ------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
@@ -267,6 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmailSignup();
   setActiveNavLink();
   initNewsletterFloat();
+  initReviewCarousel();
 });
 
 /* CSS for scroll animations (injected once) */
