@@ -401,7 +401,7 @@
       <div class="footer-signup">
         <h3>Sign up for Events &amp; Specials</h3>
         <form class="footer-email-form">
-          <input type="email" placeholder="Your email address" required/>
+          <input type="email" placeholder="Your email address" required maxlength="255"/>
           <button type="submit" class="btn btn-teal">Sign Up</button>
         </form>
       </div>
@@ -459,6 +459,8 @@
   var successDiv = document.getElementById('booking-success');
   var errorDiv   = document.getElementById('booking-error');
   var submitBtn  = document.getElementById('booking-submit-btn');
+
+  if (!form) return;
 
   function getSessionId() {
     var key = 'spot_sid';

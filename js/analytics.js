@@ -47,14 +47,9 @@
   }
 
   // --- Newsletter signup (footer form) ---
+  // Note: the actual subscribe POST is handled by initEmailSignup() in main.js.
+  // This function only logs the analytics event to avoid double-calling the subscribe endpoint.
   function trackSubscribe(email, source) {
-    // Save to newsletter_subscribers table
-    post('/api/newsletter/subscribe', {
-      clientId: CLIENT_ID,
-      email:    email,
-      source:   source || 'footer',
-    });
-    // Also log as analytics event
     post('/api/analytics/events', {
       clientId:  CLIENT_ID,
       sessionId: getSessionId(),

@@ -147,64 +147,7 @@ function initScrollAnimations() {
 }
 
 /* -------------------------------------------------------
-   6. US MAP — highlight active states
-------------------------------------------------------- */
-function initUSMap() {
-  const activeStates = ['FL', 'TX', 'OH', 'SC', 'PA', 'MI'];
-
-  activeStates.forEach(state => {
-    const el = document.querySelector(`.us-map [data-state="${state}"]`);
-    if (el) el.classList.add('active-state');
-  });
-}
-
-/* -------------------------------------------------------
-   7. LOCATION SEARCH FILTER
-------------------------------------------------------- */
-function initLocationSearch() {
-  const input = document.querySelector('.locator-search-input');
-  if (!input) return;
-
-  input.addEventListener('input', () => {
-    const query = input.value.toLowerCase();
-    document.querySelectorAll('.location-card').forEach(card => {
-      const name = card.querySelector('.location-name')?.textContent.toLowerCase() || '';
-      const addr = card.querySelector('.location-address')?.textContent.toLowerCase() || '';
-      card.style.display = (name.includes(query) || addr.includes(query)) ? '' : 'none';
-    });
-  });
-}
-
-/* -------------------------------------------------------
-   8. CONTACT FORM — handled by inline script on contact.html
-------------------------------------------------------- */
-function initContactForm() {
-  // Contact form submission is now handled by a dedicated inline script
-  // on contact.html that POSTs to the backend API.
-}
-
-/* -------------------------------------------------------
-   9. FRANCHISE FORM — client-side validation
-------------------------------------------------------- */
-function initFranchiseForm() {
-  const form = document.querySelector('.franchise-form-el');
-  if (!form) return;
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Request Received!';
-    btn.style.background = '#4CAF50';
-    setTimeout(() => {
-      btn.textContent = 'Submit';
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
-  });
-}
-
-/* -------------------------------------------------------
-   10. FOOTER EMAIL SIGNUP — calls backend API
+   6. FOOTER EMAIL SIGNUP — calls backend API
 ------------------------------------------------------- */
 function initEmailSignup() {
   const API_BASE  = 'https://websiteupgraderpro.com';
@@ -273,10 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initMarquee();
   initScrollAnimations();
-  initUSMap();
-  initLocationSearch();
-  initContactForm();
-  initFranchiseForm();
   initEmailSignup();
   setActiveNavLink();
 });
