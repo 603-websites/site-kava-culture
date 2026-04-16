@@ -2050,6 +2050,98 @@ ul { list-style: none; }
 }
 
 /* ============================================================
+   LIVE MUSIC — Monthly Calendar Grid
+   ============================================================ */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.cal-day-header {
+  text-align: center;
+  font-family: 'Norwester', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 4px;
+}
+.cal-cell {
+  min-height: 110px;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.cal-cell-num {
+  font-family: 'Norwester', sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.cal-cell-empty {
+  min-height: 110px;
+  border-radius: 8px;
+}
+.cal-event-tag {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.3;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-top: auto;
+}
+.cal-event-time {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* Dark theme (April) */
+.cal-dark .cal-day-header { color: var(--teal-primary); }
+.cal-dark .cal-cell { background: rgba(137,227,235,0.04); }
+.cal-dark .cal-cell-num { color: rgba(255,255,255,0.3); }
+.cal-dark .cal-cell-empty { background: rgba(255,255,255,0.015); }
+.cal-dark .cal-cell.has-event {
+  background: rgba(137,227,235,0.12);
+  border: 1px solid rgba(137,227,235,0.3);
+}
+.cal-dark .cal-cell.has-event .cal-cell-num { color: var(--teal-primary); }
+.cal-dark .cal-event-tag { background: rgba(137,227,235,0.2); color: white; }
+.cal-dark .cal-event-time { color: rgba(255,255,255,0.5); }
+
+/* Light theme (May) */
+.cal-light .cal-day-header { color: var(--teal-deep); }
+.cal-light .cal-cell { background: #f5f5f5; }
+.cal-light .cal-cell-num { color: #ccc; }
+.cal-light .cal-cell-empty { background: #fafafa; }
+.cal-light .cal-cell.has-event {
+  background: rgba(66,175,185,0.08);
+  border: 1px solid rgba(66,175,185,0.3);
+}
+.cal-light .cal-cell.has-event .cal-cell-num { color: var(--teal-deep); }
+.cal-light .cal-event-tag { background: rgba(66,175,185,0.15); color: var(--teal-deep); }
+.cal-light .cal-event-time { color: var(--text-body); }
+
+/* Calendar responsive */
+@media (max-width: 700px) {
+  .cal-cell, .cal-cell-empty { min-height: 70px; padding: 5px; }
+  .cal-cell-num { font-size: 14px; }
+  .cal-event-tag { font-size: 9px; padding: 3px 4px; }
+  .cal-event-time { font-size: 8px; }
+  .cal-day-header { font-size: 10px; padding: 6px 2px; }
+}
+@media (max-width: 480px) {
+  .cal-cell, .cal-cell-empty { min-height: 52px; padding: 3px; }
+  .cal-cell-num { font-size: 12px; margin-bottom: 2px; }
+  .cal-event-tag { font-size: 7px; padding: 2px 3px; letter-spacing: 0; }
+  .cal-event-time { display: none; }
+}
+
+/* ============================================================
    MENU PAGE — Category Cards Layout
    ============================================================ */
 .menu-cards-section {
