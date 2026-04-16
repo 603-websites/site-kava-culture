@@ -168,22 +168,22 @@
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Band / Artist Name *</label>
-              <input type="text" class="form-input booking-input" id="bandName" placeholder="YOUR BAND NAME" required/>
+              <input type="text" class="form-input booking-input" id="bandName" placeholder="YOUR BAND NAME" maxlength="255" required/>
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Contact Name *</label>
-              <input type="text" class="form-input booking-input" id="contactName" placeholder="YOUR NAME" required/>
+              <input type="text" class="form-input booking-input" id="contactName" placeholder="YOUR NAME" maxlength="255" required/>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Contact Email *</label>
-              <input type="email" class="form-input booking-input" id="contactEmail" placeholder="EMAIL ADDRESS" required/>
+              <input type="email" class="form-input booking-input" id="contactEmail" placeholder="EMAIL ADDRESS" maxlength="255" required/>
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Phone Number</label>
-              <input type="tel" class="form-input booking-input" id="contactPhone" placeholder="PHONE (OPTIONAL)"/>
+              <input type="tel" class="form-input booking-input" id="contactPhone" placeholder="PHONE (OPTIONAL)" maxlength="30"/>
             </div>
           </div>
 
@@ -233,13 +233,13 @@
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:rgba(255,255,255,0.7);">Link to Music Sample</label>
-              <input type="url" class="form-input booking-input" id="sampleLink" placeholder="SPOTIFY, YOUTUBE, ETC."/>
+              <input type="url" class="form-input booking-input" id="sampleLink" placeholder="SPOTIFY, YOUTUBE, ETC." maxlength="500"/>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" style="color:rgba(255,255,255,0.7);">Message / Additional Info</label>
-            <textarea class="form-textarea booking-input" id="message" placeholder="TELL US ABOUT YOUR ACT, SPECIAL REQUIREMENTS, ETC." rows="4"></textarea>
+            <textarea class="form-textarea booking-input" id="message" placeholder="TELL US ABOUT YOUR ACT, SPECIAL REQUIREMENTS, ETC." rows="4" maxlength="2000"></textarea>
           </div>
 
           <!-- Error display -->
