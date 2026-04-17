@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /pages/franchising.html
 Disallow: /pages/events.html
-
+Disallow: /pages/franchising.html
 Sitemap: https://thespotnashua.com/sitemap.xml

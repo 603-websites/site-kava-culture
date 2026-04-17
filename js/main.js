@@ -76,62 +76,7 @@ function initHeroSlider() {
 }
 
 /* -------------------------------------------------------
-   3. TYPEWRITER ANIMATION
-------------------------------------------------------- */
-function initTypewriter() {
-  // The data-typewriter attr lives on the .typing-word span
-  const elements = document.querySelectorAll('.typing-word[data-typewriter]');
-
-  elements.forEach((el, idx) => {
-    let words;
-    try { words = JSON.parse(el.dataset.typewriter); } catch(e) { return; }
-    const textEl = el.querySelector('.typing-word-text');
-    if (!textEl || !words.length) return;
-
-    // Stagger start so dual blocks don't look identical
-    const startDelay = idx * 800;
-
-    let wordIdx = 0;
-    let charIdx = 0;
-    let deleting = false;
-
-    function tick() {
-      const word = words[wordIdx];
-
-      if (!deleting) {
-        charIdx++;
-        textEl.textContent = word.slice(0, charIdx);
-        if (charIdx === word.length) {
-          setTimeout(() => { deleting = true; tick(); }, 1800);
-          return;
-        }
-      } else {
-        charIdx--;
-        textEl.textContent = word.slice(0, charIdx);
-        if (charIdx === 0) {
-          deleting = false;
-          wordIdx = (wordIdx + 1) % words.length;
-        }
-      }
-
-      setTimeout(tick, deleting ? 45 : 95);
-    }
-
-    setTimeout(tick, startDelay);
-  });
-}
-
-/* -------------------------------------------------------
-   4. MARQUEE — duplicate content for seamless loop
-------------------------------------------------------- */
-function initMarquee() {
-  document.querySelectorAll('.marquee-inner').forEach(el => {
-    el.innerHTML += el.innerHTML;
-  });
-}
-
-/* -------------------------------------------------------
-   5. SCROLL ANIMATIONS (fade-in on scroll)
+   3. SCROLL ANIMATIONS (fade-in on scroll)
 ------------------------------------------------------- */
 function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
@@ -177,7 +122,7 @@ function initEmailSignup() {
             form.reset();
           } else if (res.status === 409) {
             btn.textContent = 'Already subscribed!';
-            btn.style.background = '#42AFB9';
+            btn.style.background = '#E8E8E8';
             form.reset();
           } else {
             btn.textContent = 'Try Again';
@@ -210,7 +155,7 @@ function setActiveNavLink() {
     const linkPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '') || '/';
     if (linkPath === currentPath) {
       a.classList.add('active');
-      a.style.color = 'var(--teal-link)';
+      a.style.color = 'var(--red-accent)';
     }
   });
 }
@@ -276,42 +221,46 @@ function initNewsletterFloat() {
 }
 
 /* -------------------------------------------------------
-   9. REVIEW CAROUSEL
+   9. REVIEW CAROUSEL (Maps + Reviews combined section)
 ------------------------------------------------------- */
 function initReviewCarousel() {
-  const viewport = document.querySelector('.review-carousel-viewport');
-  const track = document.querySelector('.review-carousel-track');
-  const cards = document.querySelectorAll('.review-card');
-  const prevBtn = document.querySelector('.review-arrow-prev');
-  const nextBtn = document.querySelector('.review-arrow-next');
-  const dotsContainer = document.querySelector('.review-dots');
+  var viewport = document.querySelector('.review-carousel-viewport');
+  var track = document.querySelector('.review-carousel-track');
+  var cards = document.querySelectorAll('.review-card');
+  var dotsContainer = document.querySelector('.review-dots');
+
+  var prevBtn = document.querySelector('.review-nav-prev') || document.querySelector('.review-arrow-prev');
+  var nextBtn = document.querySelector('.review-nav-next') || document.querySelector('.review-arrow-next');
 
   if (!track || !cards.length || !viewport) return;
 
-  let currentIndex = 0;
-  let autoTimer = null;
+  var currentIndex = 0;
+  var autoTimer = null;
+
+  var isGridLayout = !!document.querySelector('.maps-reviews-grid');
 
   function getCardsPerView() {
-    const w = window.innerWidth;
+    if (isGridLayout) return 1;
+    var w = window.innerWidth;
     if (w <= 600) return 1;
     if (w <= 900) return 2;
     return 3;
   }
 
   function getMaxIndex() {
-    const perView = getCardsPerView();
+    var perView = getCardsPerView();
     return Math.max(0, cards.length - perView);
   }
 
   function updateTrack() {
-    const perView = getCardsPerView();
-    const cardWidthPercent = 100 / perView;
+    var perView = getCardsPerView();
+    var cardWidthPercent = 100 / perView;
 
-    for (let i = 0; i < cards.length; i++) {
+    for (var i = 0; i < cards.length; i++) {
       cards[i].style.flex = '0 0 ' + cardWidthPercent + '%';
     }
 
-    const offset = -(currentIndex * cardWidthPercent);
+    var offset = -(currentIndex * cardWidthPercent);
     track.style.transform = 'translateX(' + offset + '%)';
 
     updateDots();
@@ -320,14 +269,13 @@ function initReviewCarousel() {
   function buildDots() {
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
-    const maxIdx = getMaxIndex();
-    const perView = getCardsPerView();
-    const totalDots = maxIdx + 1;
+    var maxIdx = getMaxIndex();
+    var totalDots = maxIdx + 1;
 
-    for (let i = 0; i < totalDots; i++) {
-      const dot = document.createElement('button');
+    for (var i = 0; i < totalDots; i++) {
+      var dot = document.createElement('button');
       dot.className = 'review-dot' + (i === currentIndex ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to review group ' + (i + 1));
+      dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
       dot.dataset.index = i;
       dot.addEventListener('click', function() {
         goTo(parseInt(this.dataset.index));
@@ -339,20 +287,20 @@ function initReviewCarousel() {
 
   function updateDots() {
     if (!dotsContainer) return;
-    const dots = dotsContainer.querySelectorAll('.review-dot');
-    for (let i = 0; i < dots.length; i++) {
+    var dots = dotsContainer.querySelectorAll('.review-dot');
+    for (var i = 0; i < dots.length; i++) {
       dots[i].classList.toggle('active', i === currentIndex);
     }
   }
 
   function goTo(idx) {
-    const maxIdx = getMaxIndex();
+    var maxIdx = getMaxIndex();
     currentIndex = Math.max(0, Math.min(idx, maxIdx));
     updateTrack();
   }
 
   function advance() {
-    const maxIdx = getMaxIndex();
+    var maxIdx = getMaxIndex();
     if (currentIndex >= maxIdx) {
       goTo(0);
     } else {
@@ -377,7 +325,7 @@ function initReviewCarousel() {
     startAuto();
   }
 
-  // Arrow events
+  // Arrow button events
   if (prevBtn) {
     prevBtn.addEventListener('click', function() {
       goTo(currentIndex - 1);
@@ -392,14 +340,30 @@ function initReviewCarousel() {
   }
 
   // Pause on hover
-  const wrap = document.querySelector('.review-carousel-wrap');
+  var carouselColumn = document.querySelector('.review-carousel-column');
+  var wrap = carouselColumn || document.querySelector('.review-carousel-wrap');
   if (wrap) {
     wrap.addEventListener('mouseenter', stopAuto);
     wrap.addEventListener('mouseleave', startAuto);
   }
 
+  // Keyboard navigation
+  if (carouselColumn) {
+    carouselColumn.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goTo(currentIndex - 1);
+        restartAuto();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goTo(currentIndex + 1);
+        restartAuto();
+      }
+    });
+  }
+
   // Handle resize
-  let resizeTimeout;
+  var resizeTimeout;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(function() {
@@ -409,6 +373,15 @@ function initReviewCarousel() {
       buildDots();
       updateTrack();
     }, 150);
+  });
+
+  // Pause auto-advance when tab is hidden
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      stopAuto();
+    } else {
+      startAuto();
+    }
   });
 
   // Init
@@ -514,8 +487,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initNav();
   initHeroSlider();
-  initTypewriter();
-  initMarquee();
   initScrollAnimations();
   initEmailSignup();
   setActiveNavLink();

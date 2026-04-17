@@ -111,8 +111,8 @@ function calBuildMonth(year, month, theme, eventsData) {
   }
 
   // Section background
-  var sectionBg = isDark ? '#0F272E' : '#fff';
-  var titleColor = isDark ? 'var(--teal-primary)' : 'var(--teal-deep)';
+  var sectionBg = isDark ? '#0a0a0a' : '#fff';
+  var titleColor = isDark ? 'var(--silver-primary)' : 'var(--dark-deep)';
   var subtitleColor = isDark ? 'rgba(255,255,255,0.6)' : 'var(--text-body)';
 
   var html = '';
@@ -121,10 +121,10 @@ function calBuildMonth(year, month, theme, eventsData) {
   if (isDark) {
     html += '<div class="wave-divider" style="background:#fff;">';
     html += '<svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
-    html += '<path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#0F272E"/>';
+    html += '<path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#0a0a0a"/>';
     html += '</svg></div>';
   } else {
-    html += '<div class="wave-divider" style="background:#0F272E;">';
+    html += '<div class="wave-divider" style="background:#0a0a0a;">';
     html += '<svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
     html += '<path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>';
     html += '</svg></div>';

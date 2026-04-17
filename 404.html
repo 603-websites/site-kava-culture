@@ -4,101 +4,203 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Page Not Found — The Spot Nashua</title>
+  <meta name="robots" content="noindex, nofollow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Arizonia&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/jdkato/norwester@main/norwester.otf" as="font" type="font/otf" crossorigin/>
   <style>
-    .error-page {
+    .error-section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 70vh;
+      min-height: 60vh;
       text-align: center;
-      padding: 2rem;
+      padding: 4rem 2rem;
+      background: #fff;
     }
-
     .error-code {
       font-family: 'Norwester', sans-serif;
-      font-size: 8rem;
-      color: var(--teal-primary, #89E3EB);
+      font-size: clamp(6rem, 15vw, 10rem);
+      color: var(--silver-primary, #C0C0C0);
       line-height: 1;
       margin: 0;
     }
-
     .error-title {
       font-family: 'Norwester', sans-serif;
-      font-size: 2rem;
-      color: #fff;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      color: var(--dark-deep, #0a0a0a);
       margin: 0.5rem 0;
     }
-
     .error-message {
       font-family: 'Roboto Condensed', sans-serif;
-      color: #ccc;
+      color: #555;
       font-size: 1.1rem;
       margin: 1rem 0 2rem;
-      max-width: 420px;
+      max-width: 440px;
     }
-
     .error-btn {
       display: inline-block;
-      padding: 0.8rem 2rem;
-      background: var(--teal-link, #42AFB9);
+      padding: 0.85rem 2.2rem;
+      background: var(--maroon-primary, #6B1D2A);
       color: #fff;
       font-family: 'Norwester', sans-serif;
       font-size: 1.1rem;
       text-decoration: none;
       border-radius: 4px;
+      letter-spacing: 1px;
       transition: background 0.3s;
     }
-
     .error-btn:hover {
-      background: var(--teal-primary, #89E3EB);
-      color: var(--teal-deep, #0F272E);
-    }
-
-    .error-header {
-      padding: 1.5rem 2rem;
-      text-align: center;
-    }
-
-    .error-header a {
-      font-family: 'Norwester', sans-serif;
-      font-size: 1.5rem;
-      color: var(--teal-primary, #89E3EB);
-      text-decoration: none;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .error-footer {
-      text-align: center;
-      padding: 2rem;
-      font-family: 'Roboto Condensed', sans-serif;
-      color: #777;
-      font-size: 0.85rem;
+      background: var(--maroon-dark, #4a1420);
     }
   </style>
 </head>
 <body>
+<a href="#main-content" class="skip-to-content">Skip to content</a>
 
-  <header class="error-header">
-    <a href="index.html">The Spot</a>
-  </header>
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="index.html" class="logo-wrap">
+      <img src="images/logothespot.jpg" alt="The Spot" class="logo-icon" width="50" height="50" />
+      <div class="logo-text-block">
+        <span class="logo-main">The Spot</span>
+        <span class="logo-sub">Kava Bar &amp; Music &bull; Nashua NH</span>
+      </div>
+    </a>
 
-  <main class="error-page">
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <a href="index.html">Home</a>
+      <a href="pages/live-music.html">Live Music</a>
+      <a href="pages/menu.html">Menu</a>
+      <a href="pages/about.html">About</a>
+      <a href="pages/contact.html">Contact</a>
+      <a href="pages/live-music.html" class="nav-cta">View Calendar</a>
+    </nav>
+
+    <!-- Hamburger -->
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Nav Overlay -->
+<nav class="nav-overlay" aria-label="Main Navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="pages/live-music.html">Live Music</a></li>
+    <li><a href="pages/menu.html">Menu</a></li>
+    <li><a href="pages/about.html">About</a></li>
+    <li><a href="pages/contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-wholesale-btn">
+    <a href="pages/live-music.html" class="btn btn-dark" style="display:block;text-align:center;">View Calendar</a>
+  </div>
+</nav>
+<div class="nav-overlay-backdrop"></div>
+
+<!-- ============================================================
+     404 CONTENT
+============================================================ -->
+<main class="page-wrap" id="main-content">
+  <section class="error-section">
     <h1 class="error-code">404</h1>
     <h2 class="error-title">Page Not Found</h2>
-    <p class="error-message">The page you're looking for doesn't exist or has been moved.</p>
+    <p class="error-message">The page you're looking for doesn't exist or has been moved. Head back home to explore everything The Spot has to offer.</p>
     <a href="index.html" class="error-btn">Back to Home</a>
-  </main>
+  </section>
+</main>
 
-  <footer class="error-footer">
-    &copy; 2025 The Spot Nashua. All rights reserved.
-  </footer>
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <!-- Footer Wave -->
+  <div class="wave-divider" style="background:#fff;">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
 
+  <div class="footer-top">
+    <div class="container">
+      <!-- Large teal logo -->
+      <a href="index.html" class="footer-logo-lg footer-logo-teal" style="justify-content:center;">
+        <img src="images/logothespot.jpg" alt="The Spot Logo" class="logo-icon" width="60" height="60" />
+        <div class="logo-text-block">
+          <span class="logo-main" style="color:var(--silver-link);font-size:28px;">The Spot</span>
+          <span class="logo-sub" style="color:rgba(232,232,232,0.7);">Kava Bar &amp; Music &bull; Nashua NH</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-dark" style="padding-top:40px;">
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="footer-signup">
+        <h3>Sign up for Events &amp; Specials</h3>
+        <form class="footer-email-form">
+          <input type="email" placeholder="Your email address" required maxlength="255" aria-label="Your email address"/>
+          <button type="submit" class="btn btn-teal">Sign Up</button>
+        </form>
+      </div>
+      <div class="footer-dark-grid" style="max-width:800px;margin:0 auto 30px;">
+        <div class="footer-dark-col">
+          <h4>Events</h4>
+          <ul>
+            <li><a href="pages/live-music.html">Upcoming Shows</a></li>
+            <li><a href="pages/live-music.html">Live Music</a></li>
+            <li><a href="pages/book-a-spot.html">Book a Spot</a></li>
+          </ul>
+        </div>
+        <div class="footer-dark-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="pages/menu.html">Our Menu</a></li>
+            <li><a href="pages/about.html">About Us</a></li>
+            <li><a href="pages/blog.html">Blog</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="footer-dark-col">
+          <h4>Visit Us</h4>
+          <ul>
+            <li><a href="pages/contact.html">217 Main Street</a></li>
+            <li><a href="pages/contact.html">Nashua, NH 03060</a></li>
+            <li><a href="tel:+16037184732">(603) 718-4732</a></li>
+            <li>Mon&ndash;Thu: 3PM&ndash;11PM</li>
+            <li>Fri&ndash;Sat: 3PM&ndash;1AM</li>
+            <li>Sun: Closed</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-hr"/>
+      <div class="footer-bottom">
+        <div class="social-row">
+          <a href="https://instagram.com/thespotnashua" target="_blank" rel="noopener noreferrer" class="social-btn social-instagram" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/p/The-Spot-61572943945372/" target="_blank" rel="noopener noreferrer" class="social-btn social-facebook" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="social-btn social-tiktok" aria-label="TikTok — Coming Soon" title="Coming Soon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.08a4.85 4.85 0 01-1-.39z"/></svg>
+          </a>
+        </div>
+        <p class="footer-copyright">&copy; 2024–26 The Spot Kava Bar &amp; Music | All Rights Reserved | <span style="color:rgba(255,255,255,0.4);">Privacy Policy</span> | <a href="https://www.websiteupgraderpro.com/login" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.35);">Admin</a> | Designed by 603 Websites</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/analytics.js"></script>
 </body>
 </html>

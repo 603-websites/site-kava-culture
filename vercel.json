@@ -1,23 +1,35 @@
 {
-  "headers": [
+  "redirects": [
     {
-      "source": "/sitemap.xml",
-      "headers": [
-        { "key": "Content-Type", "value": "application/xml" }
-      ]
+      "source": "/about.html",
+      "destination": "/pages/about.html",
+      "statusCode": 301
     },
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
-    }
-  ],
-  "redirects": [
+      "source": "/menu.html",
+      "destination": "/pages/menu.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/calendar.html",
+      "destination": "/pages/live-music.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/pages/contact.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog.html",
+      "destination": "/pages/blog.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/events.html",
+      "destination": "/pages/live-music.html",
+      "statusCode": 301
+    },
     {
       "source": "/pages/events.html",
       "destination": "/pages/live-music.html",
@@ -27,6 +39,28 @@
       "source": "/pages/franchising.html",
       "destination": "/",
       "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml" }
+      ]
     }
   ]
 }
