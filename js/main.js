@@ -623,11 +623,11 @@ function initNewsletterPopup() {
     });
   });
 
-  // Show popup after 12 seconds
+  // Show popup after 8 seconds
   setTimeout(function() {
     popup.classList.add('visible');
     overlay.classList.add('visible');
-  }, 12000);
+  }, 8000);
 }
 
 /* -------------------------------------------------------
