@@ -15,6 +15,10 @@
   <link rel="icon" type="image/jpeg" href="images/logothespot.jpg"/>
   <link rel="canonical" href="https://thespotnashua.com/"/>
   <meta name="robots" content="index, follow"/>
+  <meta name="geo.region" content="US-NH"/>
+  <meta name="geo.placename" content="Nashua"/>
+  <meta name="geo.position" content="42.7654;-71.4676"/>
+  <meta name="ICBM" content="42.7654, -71.4676"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preconnect" href="https://www.google.com"/>
@@ -28,6 +32,8 @@
     "description": "Alcohol-free kava bar and live music venue in downtown Nashua, NH. Premium kava, craft coffee, creative mocktails, and live entertainment.",
     "url": "https://thespotnashua.com",
     "telephone": "+1-603-718-4732",
+    "email": "thespotnashua@gmail.com",
+    "hasMap": "https://www.google.com/maps/place/The+Spot/@42.7654,-71.4676,17z/",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "217 Main Street",
@@ -55,6 +61,11 @@
         "closes": "01:00"
       }
     ],
+    "founder": {
+      "@type": "Person",
+      "name": "Michael McDowell",
+      "jobTitle": "Owner & Founder"
+    },
     "servesCuisine": ["Kava", "Coffee", "Mocktails"],
     "priceRange": "$$",
     "sameAs": [
@@ -109,6 +120,15 @@
         },
         "reviewBody": "Every time I go, they treat me like family. The place feels like home. Always a great vibe and even greater people."
       }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thespotnashua.com/" }
     ]
   }
   </script>
@@ -233,7 +253,26 @@
   </section>
 
   <!-- ======================================================
-       SECTION 2 — Maps + Reviews
+       SECTION 2 — About The Spot (SEO body content)
+  ====================================================== -->
+  <section style="padding:60px 0;background:#fff;">
+    <div class="container" style="max-width:800px;text-align:center;">
+      <h2 class="font-norwester text-upper text-dark animate-on-scroll" style="font-size:clamp(28px,4vw,42px);margin-bottom:20px;">Nashua's Alcohol-Free Kava Bar &amp; Live Music Venue</h2>
+      <p class="animate-on-scroll" style="font-family:'Roboto Condensed',sans-serif;font-size:17px;line-height:1.8;color:var(--text-body);margin-bottom:16px;">
+        The Spot is downtown Nashua's kava bar and live music venue at 217 Main Street. We serve premium kava, craft coffee from Anchorhead Coffee, creative mocktails, and food from Joanne's Kitchen&mdash;all in an alcohol-free, all-ages social lounge.
+      </p>
+      <p class="animate-on-scroll" style="font-family:'Roboto Condensed',sans-serif;font-size:17px;line-height:1.8;color:var(--text-body);margin-bottom:20px;">
+        Open Monday through Thursday 3&ndash;11PM and Friday&ndash;Saturday 3PM&ndash;1AM, The Spot hosts live music, open mic nights, DJ sets, trivia, karaoke, comedy, and community events every week. No cover charge. No alcohol. Just good vibes.
+      </p>
+      <div class="animate-on-scroll" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="pages/menu.html" class="btn btn-teal">View Our Menu</a>
+        <a href="pages/live-music.html" class="btn btn-outline-dark">See What's Playing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SECTION 3 — Maps + Reviews
   ====================================================== -->
 
   <!-- Wave (white to dark) -->
@@ -419,11 +458,64 @@
   </section>
 
   <!-- ======================================================
-       SECTION 3 — Follow Us (Instagram + Facebook)
+       SECTION 4 — From Our Blog
   ====================================================== -->
 
-  <!-- Wave (dark to silver) -->
+  <!-- Wave (dark to white) -->
   <div class="wave-divider" style="background:var(--dark-deep);">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
+  <section style="padding:60px 0;background:#fff;">
+    <div class="container">
+      <div class="animate-on-scroll" style="text-align:center;margin-bottom:40px;">
+        <span class="section-label text-teal">FROM OUR BLOG</span>
+        <h2 class="font-norwester text-upper text-dark" style="font-size:clamp(28px,4vw,42px);">Latest Articles</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto;">
+
+        <a href="pages/blog/how-kava-is-made.html" class="animate-on-scroll" style="text-decoration:none;color:inherit;background:#f9f9f9;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.2s;">
+          <img src="images/drinkmaking.jpg" alt="Preparing drinks at The Spot" style="width:100%;height:200px;object-fit:cover;display:block;" loading="lazy"/>
+          <div style="padding:20px;">
+            <div style="font-family:'Roboto Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal-link);margin-bottom:8px;">Kava Education</div>
+            <h3 class="font-norwester text-upper text-dark" style="font-size:18px;margin-bottom:8px;">How Kava Is Made: From Root to Shell</h3>
+            <p style="font-family:'Roboto Condensed',sans-serif;font-size:14px;color:var(--text-body);line-height:1.6;">Every shell of kava starts with a root that took years to grow. Discover the journey from the Pacific Islands to your cup.</p>
+          </div>
+        </a>
+
+        <a href="pages/blog/kava-vs-alcohol.html" class="animate-on-scroll" style="text-decoration:none;color:inherit;background:#f9f9f9;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.2s;">
+          <img src="images/drinks.jpg" alt="Craft drinks at The Spot" style="width:100%;height:200px;object-fit:cover;display:block;" loading="lazy"/>
+          <div style="padding:20px;">
+            <div style="font-family:'Roboto Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal-link);margin-bottom:8px;">Kava Education</div>
+            <h3 class="font-norwester text-upper text-dark" style="font-size:18px;margin-bottom:8px;">5 Reasons to Try Kava Instead of Alcohol</h3>
+            <p style="font-family:'Roboto Condensed',sans-serif;font-size:14px;color:var(--text-body);line-height:1.6;">No hangover, no impairment, not addictive. Here is why more people are making the switch to kava.</p>
+          </div>
+        </a>
+
+        <a href="pages/blog/live-music-nashua.html" class="animate-on-scroll" style="text-decoration:none;color:inherit;background:#f9f9f9;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.2s;">
+          <img src="images/BandJamthespot.jpg" alt="Live band at The Spot Nashua" style="width:100%;height:200px;object-fit:cover;display:block;" loading="lazy"/>
+          <div style="padding:20px;">
+            <div style="font-family:'Roboto Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#333;margin-bottom:8px;">Music</div>
+            <h3 class="font-norwester text-upper text-dark" style="font-size:18px;margin-bottom:8px;">The Live Music Scene in Downtown Nashua</h3>
+            <p style="font-family:'Roboto Condensed',sans-serif;font-size:14px;color:var(--text-body);line-height:1.6;">How small venues like The Spot are keeping local music alive with open mics, bands, and community events.</p>
+          </div>
+        </a>
+
+      </div>
+      <div class="animate-on-scroll" style="text-align:center;margin-top:32px;">
+        <a href="pages/blog.html" class="btn btn-outline-dark">View All Articles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SECTION 5 — Follow Us (Instagram + Facebook)
+  ====================================================== -->
+
+  <!-- Wave (white to silver) -->
+  <div class="wave-divider" style="background:#fff;">
     <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#C0C0C0"/>
     </svg>
@@ -540,7 +632,7 @@
             <li><a href="pages/menu.html">Our Menu</a></li>
             <li><a href="pages/about.html">About Us</a></li>
             <li><a href="pages/blog.html">Blog</a></li>
-            <li><a href="#">Privacy</a></li>
+            <li><a href="pages/privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
         <div class="footer-dark-col">
