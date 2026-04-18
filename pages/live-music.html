@@ -123,7 +123,7 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="live-music.html#april-events" class="nav-cta">View Calendar</a>
-      <button class="nav-subscribe" aria-label="Subscribe to newsletter">Subscribe</button>
+      <button class="nav-subscribe" aria-label="Subscribe to newsletter">Subscribe to Newsletter</button>
     </nav>
     <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -174,7 +174,7 @@
 
       <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
         <div id="calendar-month-btns" style="display:inline;"></div>
-        <a href="#booking-form" class="btn btn-teal" style="font-size:18px;padding:14px 34px;">&#9734; BOOK A SPOT</a>
+        <a href="book-a-spot.html" class="btn btn-teal" style="font-size:18px;padding:14px 34px;">&#9734; BOOK A SPOT</a>
       </div>
     </div>
   </section>
@@ -189,146 +189,6 @@
         </div>
       </noscript>
 
-  <!-- ======================================================
-       BOOKING FORM SECTION
-  ====================================================== -->
-  <div class="wave-divider" style="background:#fff;">
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#0a0a0a"/>
-    </svg>
-  </div>
-
-  <section id="booking-form" style="background:#0a0a0a;padding:60px 0;">
-    <div class="container" style="max-width:760px;">
-      <div style="text-align:center;margin-bottom:40px;" class="animate-on-scroll">
-        <h2 style="font-family:'Norwester',sans-serif;font-size:clamp(28px,4vw,44px);color:var(--silver-primary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;">
-          WANT TO PERFORM?
-        </h2>
-        <p style="font-size:16px;color:rgba(255,255,255,0.6);font-family:'Roboto Condensed',sans-serif;">
-          Request a spot on our calendar. Tell us about your band and when you'd like to play. We'll get back to you within 48 hours.
-        </p>
-      </div>
-
-      <!-- Form -->
-      <div id="booking-form-wrap" class="animate-on-scroll">
-        <form id="bookingForm" novalidate data-form-handler='{"apiPath":"/api/booking/request","successEl":"booking-success","errorEl":"booking-error","formWrap":"booking-form-wrap","loadingText":"Submitting..."}'>
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Band / Artist Name *</label>
-              <input type="text" class="form-input booking-input" id="bandName" name="bandName" placeholder="YOUR BAND NAME" maxlength="255" required/>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Contact Name *</label>
-              <input type="text" class="form-input booking-input" id="contactName" name="contactName" placeholder="YOUR NAME" maxlength="255" required/>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Contact Email *</label>
-              <input type="email" class="form-input booking-input" id="contactEmail" name="contactEmail" placeholder="EMAIL ADDRESS" maxlength="255" required/>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Phone Number</label>
-              <input type="tel" class="form-input booking-input" id="contactPhone" name="contactPhone" placeholder="PHONE (OPTIONAL)" maxlength="30"/>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Genre / Style *</label>
-              <select class="form-input booking-input booking-select" id="genre" name="genre" required>
-                <option value="" disabled selected>SELECT GENRE</option>
-                <option value="Acoustic">Acoustic</option>
-                <option value="Rock">Rock</option>
-                <option value="Jazz">Jazz</option>
-                <option value="Blues">Blues</option>
-                <option value="Hip-Hop">Hip-Hop</option>
-                <option value="Electronic">Electronic</option>
-                <option value="Folk">Folk</option>
-                <option value="Singer-Songwriter">Singer-Songwriter</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Band Size *</label>
-              <input type="number" class="form-input booking-input" id="bandSize" name="bandSize" min="1" max="10" placeholder="NUMBER OF MEMBERS" required/>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Preferred Date *</label>
-              <input type="date" class="form-input booking-input" id="preferredDate" name="preferredDate" required/>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Preferred Time *</label>
-              <select class="form-input booking-input booking-select" id="preferredTime" name="preferredTime" required>
-                <option value="" disabled selected>SELECT TIME</option>
-                <option value="6:00 PM">6:00 PM</option>
-                <option value="7:00 PM">7:00 PM</option>
-                <option value="8:00 PM">8:00 PM</option>
-                <option value="9:00 PM">9:00 PM</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Alternate Date</label>
-              <input type="date" class="form-input booking-input" id="alternateDate" name="alternateDate"/>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:rgba(255,255,255,0.7);">Link to Music Sample</label>
-              <input type="url" class="form-input booking-input" id="sampleLink" name="sampleLink" placeholder="SPOTIFY, YOUTUBE, ETC." maxlength="500"/>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" style="color:rgba(255,255,255,0.7);">Message / Additional Info</label>
-            <textarea class="form-textarea booking-input" id="message" name="message" placeholder="TELL US ABOUT YOUR ACT, SPECIAL REQUIREMENTS, ETC." rows="4" maxlength="2000"></textarea>
-          </div>
-
-          <!-- Error display -->
-          <div id="booking-error" style="display:none;background:rgba(220,50,50,0.15);border:1px solid rgba(220,50,50,0.4);border-radius:8px;padding:14px 20px;margin-bottom:20px;color:#ff6b6b;font-family:'Roboto Condensed',sans-serif;font-size:14px;text-align:center;">
-          </div>
-
-          <div style="position:absolute;left:-9999px;" aria-hidden="true"><input type="text" name="website_url" tabindex="-1" autocomplete="off"/></div>
-
-          <div style="text-align:center;">
-            <button type="submit" class="btn btn-teal form-submit-btn" id="booking-submit-btn" style="font-size:18px;padding:14px 48px;min-width:240px;">
-              Submit Booking Request
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Success message (hidden by default) -->
-      <div id="booking-success" style="display:none;text-align:center;padding:60px 20px;">
-        <div style="width:80px;height:80px;border-radius:50%;background:var(--silver-primary);display:inline-flex;align-items:center;justify-content:center;margin-bottom:24px;">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 20 L17 27 L30 12" stroke="#0a0a0a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h2 style="font-family:'Norwester',sans-serif;font-size:clamp(28px,4vw,40px);color:var(--silver-primary);text-transform:uppercase;margin-bottom:12px;">
-          Request Submitted!
-        </h2>
-        <p style="font-size:18px;color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 8px;font-family:'Roboto Condensed',sans-serif;">
-          Thanks for reaching out. We'll review your submission and get back to you within 48 hours.
-        </p>
-        <p style="font-size:14px;color:rgba(255,255,255,0.5);font-family:'Roboto Condensed',sans-serif;margin-bottom:30px;">
-          Keep an eye on your inbox for a confirmation email.
-        </p>
-        <a href="#april-events" class="btn btn-teal">BACK TO CALENDAR</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="wave-divider" style="background:#0a0a0a;">
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
-    </svg>
-  </div>
 
 </main>
 

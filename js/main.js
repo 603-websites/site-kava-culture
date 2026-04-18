@@ -622,9 +622,6 @@ function initNewsletterPopup() {
    14. NAV SUBSCRIBE BUTTON — scrolls to footer signup
 ------------------------------------------------------- */
 function initNavSubscribe() {
-  var messages = ['Subscribe', 'Live Music Events'];
-  var idx = 0;
-
   document.querySelectorAll('.nav-subscribe').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -636,19 +633,6 @@ function initNavSubscribe() {
       }
     });
   });
-
-  // Carousel text cycling on nav subscribe buttons
-  setInterval(function() {
-    idx = (idx + 1) % messages.length;
-    document.querySelectorAll('.nav-subscribe').forEach(function(btn) {
-      btn.style.transition = 'opacity 0.3s';
-      btn.style.opacity = '0';
-      setTimeout(function() {
-        btn.textContent = messages[idx];
-        btn.style.opacity = '1';
-      }, 300);
-    });
-  }, 3500);
 }
 
 /* -------------------------------------------------------

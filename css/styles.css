@@ -3054,7 +3054,7 @@ select:focus-visible {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #E8E8E8;
+  color: var(--maroon);
   position: relative;
   z-index: 1;
   padding: 0 24px 28px;
@@ -5158,6 +5158,10 @@ html.js-loaded .animate-on-scroll.visible {
   overflow: hidden;
 }
 
+.maps-reviews-grid > .review-carousel-column {
+  overflow: visible;
+}
+
 .map-directions-card {
   border-radius: 12px;
   overflow: hidden;
@@ -5230,28 +5234,30 @@ html.js-loaded .animate-on-scroll.visible {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.4);
-  background: #2d2d2d;
+  border: 2px solid rgba(255,255,255,0.6);
+  background: rgba(30,30,30,0.95);
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
-  z-index: 5;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .review-nav-btn:hover {
-  background: #8a8a8a;
+  background: rgba(128,0,32,0.85);
   border-color: #fff;
+  transform: translateY(-50%) scale(1.08);
 }
 
-.review-nav-prev { left: -20px; }
-.review-nav-next { right: -20px; }
+.review-nav-prev { left: -22px; }
+.review-nav-next { right: -22px; }
 
 .review-card-source {
   display: inline-block;
@@ -5313,13 +5319,13 @@ html.js-loaded .animate-on-scroll.visible {
   }
 
   .review-nav-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
   }
 
-  .review-nav-prev { left: -6px; }
-  .review-nav-next { right: -6px; }
+  .review-nav-prev { left: -8px; }
+  .review-nav-next { right: -8px; }
 }
 
 /* ============================================================
