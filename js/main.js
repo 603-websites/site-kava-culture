@@ -145,13 +145,12 @@ function initEmailSignup() {
 ------------------------------------------------------- */
 function setActiveNavLink() {
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
-  document.querySelectorAll('.nav-overlay a, .desktop-nav a:not(.nav-cta)').forEach(a => {
+  document.querySelectorAll('.nav-overlay a, .desktop-nav a:not(.nav-cta):not(.nav-subscribe)').forEach(a => {
     const href = a.getAttribute('href');
     if (!href || href === '#') return;
     const linkPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '') || '/';
     if (linkPath === currentPath) {
       a.classList.add('active');
-      a.style.color = 'var(--red-accent)';
     }
   });
 }
@@ -529,6 +528,114 @@ function initBookingAnalytics() {
 }
 
 /* -------------------------------------------------------
+   13. NEWSLETTER POPUP — slide-in from bottom after delay
+------------------------------------------------------- */
+function initNewsletterPopup() {
+  var API_BASE = 'https://websiteupgraderpro.com';
+  var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
+
+  // Only show once per visit (sessionStorage)
+  try { if (sessionStorage.getItem('spot_nl_popup_shown')) return; } catch(e) {}
+
+  // Create overlay
+  var overlay = document.createElement('div');
+  overlay.className = 'nl-popup-overlay';
+
+  // Create popup
+  var popup = document.createElement('div');
+  popup.className = 'nl-popup';
+  popup.innerHTML =
+    '<button class="nl-popup-close" aria-label="Close">&times;</button>' +
+    '<h3>Stay in the Loop</h3>' +
+    '<p>Subscribe to know when the next live performance drops and when new kava &amp; mocktail flavors are released.</p>' +
+    '<form class="nl-popup-form">' +
+      '<input type="email" placeholder="Your email address" required maxlength="255" aria-label="Email address"/>' +
+      '<div style="position:absolute;left:-9999px;" aria-hidden="true"><input type="text" name="website_url" tabindex="-1" autocomplete="off"/></div>' +
+      '<button type="submit">Subscribe</button>' +
+    '</form>';
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(popup);
+
+  function closePopup() {
+    popup.classList.remove('visible');
+    overlay.classList.remove('visible');
+    try { sessionStorage.setItem('spot_nl_popup_shown', '1'); } catch(e) {}
+    setTimeout(function() {
+      if (popup.parentNode) popup.parentNode.removeChild(popup);
+      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }, 500);
+  }
+
+  // Close on X button
+  popup.querySelector('.nl-popup-close').addEventListener('click', closePopup);
+
+  // Close on overlay click
+  overlay.addEventListener('click', closePopup);
+
+  // Handle form submission
+  var form = popup.querySelector('.nl-popup-form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var honeypot = form.querySelector('input[name="website_url"]');
+    if (honeypot && honeypot.value) return;
+    var emailInput = form.querySelector('input[type="email"]');
+    var email = emailInput ? emailInput.value.trim() : '';
+    var btn = form.querySelector('button[type="submit"]');
+    if (!email || !btn) return;
+
+    btn.textContent = 'Subscribing...';
+    btn.disabled = true;
+
+    fetch(API_BASE + '/api/newsletter/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clientId: CLIENT_ID, email: email, source: 'popup' })
+    })
+    .then(function(res) {
+      if (res.ok || res.status === 409) {
+        popup.querySelector('h3').textContent = 'You\'re In!';
+        popup.querySelector('p').textContent = res.status === 409
+          ? 'You\'re already subscribed. We\'ll keep you posted!'
+          : 'Thanks for subscribing! We\'ll keep you posted on shows and new flavors.';
+        form.style.display = 'none';
+        setTimeout(closePopup, 2500);
+      } else {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    })
+    .catch(function() {
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+    });
+  });
+
+  // Show popup after 12 seconds
+  setTimeout(function() {
+    popup.classList.add('visible');
+    overlay.classList.add('visible');
+  }, 12000);
+}
+
+/* -------------------------------------------------------
+   14. NAV SUBSCRIBE BUTTON — scrolls to footer signup
+------------------------------------------------------- */
+function initNavSubscribe() {
+  document.querySelectorAll('.nav-subscribe').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var signup = document.querySelector('.footer-signup');
+      if (signup) {
+        signup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        var input = signup.querySelector('input[type="email"]');
+        if (input) setTimeout(function() { input.focus(); }, 600);
+      }
+    });
+  });
+}
+
+/* -------------------------------------------------------
    INIT ALL
 ------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
@@ -540,6 +647,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmailSignup();
   setActiveNavLink();
   initNewsletterFloat();
+  initNewsletterPopup();
+  initNavSubscribe();
   initReviewCarousel();
   initGenericForms();
   initBookingAnalytics();

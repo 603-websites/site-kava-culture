@@ -304,9 +304,16 @@ ul { list-style: none; }
 .logo-sub {
   font-family: 'Norwester', Helvetica, Arial, sans-serif;
   font-size: 9px;
-  color: var(--silver-link);
+  color: var(--text-body);
   text-transform: uppercase;
   letter-spacing: 0.15em;
+}
+
+/* Maroon gradient pill behind logo text for readability */
+.logo-text-block {
+  background: linear-gradient(135deg, rgba(128,0,32,0.08) 0%, rgba(155,35,53,0.06) 100%);
+  padding: 4px 10px;
+  border-radius: 6px;
 }
 
 /* Hamburger */
@@ -2383,9 +2390,13 @@ ul { list-style: none; }
     transition: color 0.2s;
     white-space: nowrap;
   }
-  .desktop-nav a:hover,
+  .desktop-nav a:hover {
+    color: var(--maroon);
+  }
   .desktop-nav a.active {
-    color: var(--silver-link);
+    background: linear-gradient(135deg, rgba(128,0,32,0.12) 0%, rgba(155,35,53,0.08) 100%);
+    color: var(--maroon);
+    border-radius: 6px;
   }
   .desktop-nav .nav-cta {
     font-size: 11px;
@@ -2402,6 +2413,24 @@ ul { list-style: none; }
   .desktop-nav .nav-cta:hover {
     background: var(--maroon-light);
     color: var(--white);
+  }
+  .desktop-nav .nav-subscribe {
+    font-size: 11px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: var(--maroon);
+    color: var(--white);
+    margin-left: 6px;
+    font-family: 'Norwester', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+  }
+  .desktop-nav .nav-subscribe:hover {
+    background: var(--maroon-light);
   }
   .hamburger {
     display: none !important;
@@ -2476,6 +2505,149 @@ ul { list-style: none; }
 /* Give footer extra bottom padding so floating bar doesn't cover content */
 .footer-dark {
   padding-bottom: 70px !important;
+}
+
+/* ============================================================
+   Newsletter Popup Modal (slide-in from bottom)
+   ============================================================ */
+.nl-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.nl-popup-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.nl-popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, var(--maroon) 0%, #5a0015 100%);
+  padding: 40px 24px 32px;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 -4px 30px rgba(0,0,0,0.4);
+  border-radius: 20px 20px 0 0;
+}
+.nl-popup.visible {
+  transform: translateY(0);
+}
+.nl-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.nl-popup-close:hover {
+  color: var(--white);
+}
+.nl-popup h3 {
+  font-family: 'Norwester', Helvetica, Arial, sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.nl-popup p {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  max-width: 460px;
+  margin: 0 auto 20px;
+  line-height: 1.5;
+}
+.nl-popup-form {
+  display: flex;
+  max-width: 420px;
+  margin: 0 auto;
+  gap: 8px;
+}
+.nl-popup-form input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+  outline: none;
+}
+.nl-popup-form button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--maroon);
+  font-family: 'Norwester', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.nl-popup-form button:hover {
+  background: #f0f0f0;
+}
+
+/* Calendar mini Book a Spot CTA */
+.cal-book-cta {
+  display: inline-block;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  background: var(--maroon);
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-top: 4px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cal-book-cta:hover {
+  background: var(--maroon-light);
+}
+
+/* Review platform icons row */
+.review-cta-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.review-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  background: rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.review-cta-icon:hover {
+  background: rgba(255,255,255,0.2);
 }
 
 /* ============================================================
