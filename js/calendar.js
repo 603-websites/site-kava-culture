@@ -190,7 +190,8 @@ function calBuildMonth(year, month, theme, eventsData) {
     // Mini "Book a Spot" CTA on Thu (4), Fri (5), Sat (6) — future dates only
     var cellDow = new Date(year, month, d).getDay();
     if (!past && (cellDow === 4 || cellDow === 5 || cellDow === 6)) {
-      var bookHref = isDark ? 'pages/book-a-spot.html' : '#booking-form';
+      var inPagesDir = window.location.pathname.indexOf('/pages/') !== -1;
+      var bookHref = inPagesDir ? 'book-a-spot.html' : 'pages/book-a-spot.html';
       html += '<a href="' + bookHref + '" class="cal-book-cta">Book a Spot</a>';
     }
 

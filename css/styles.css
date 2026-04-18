@@ -231,11 +231,11 @@ ul { list-style: none; }
 
 .btn-outline-teal {
   background: transparent;
-  color: var(--silver-link);
-  border-color: var(--silver-link);
+  color: var(--maroon);
+  border-color: var(--maroon);
 }
 .btn-outline-teal:hover {
-  background: var(--silver-link);
+  background: var(--maroon);
   color: var(--white);
 }
 
@@ -429,8 +429,8 @@ ul { list-style: none; }
   text-align: center;
 }
 
-.footer-logo-teal .logo-main { color: var(--silver-link); }
-.footer-logo-teal .logo-sub  { color: var(--silver-dark); }
+.footer-logo-teal .logo-main { color: var(--text-heading); }
+.footer-logo-teal .logo-sub  { color: var(--text-body); }
 
 .footer-logo-lg {
   display: inline-flex;
