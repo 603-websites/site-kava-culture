@@ -4,7 +4,7 @@
    THE SPOT NASHUA — Dynamic Calendar Renderer
    ============================================================
    Reads event data from window.SPOT_EVENTS (set by calendar-data.js)
-   and renders monthly calendar grids for the current + next month.
+   and renders monthly calendar grids with prev/next navigation.
 
    Called from DOMContentLoaded in main.js:
      initDynamicCalendar();
@@ -215,65 +215,109 @@ function calBuildMonth(year, month, theme, eventsData) {
 }
 
 /**
- * Main entry point. Renders dynamic calendars into #dynamic-calendars.
- * Shows the current month and the next month, alternating dark/light themes.
+ * Compute a year/month pair from a base date + month offset.
+ */
+function calGetMonthYear(baseYear, baseMonth, monthOffset) {
+  var m = baseMonth + monthOffset;
+  var y = baseYear;
+  while (m > 11) { m -= 12; y++; }
+  while (m < 0) { m += 12; y--; }
+  return { month: m, year: y };
+}
+
+/**
+ * Main entry point. Renders dynamic calendars into #dynamic-calendars
+ * with prev/next navigation to browse months.
  */
 function initDynamicCalendar() {
   var container = document.getElementById('dynamic-calendars');
   if (!container) return;
 
-  // Require event data
   var eventsData = window.SPOT_EVENTS;
   if (!eventsData || typeof eventsData !== 'object') {
     eventsData = {};
   }
 
   var now = new Date();
-  var currentYear = now.getFullYear();
-  var currentMonth = now.getMonth();
+  var baseYear = now.getFullYear();
+  var baseMonth = now.getMonth();
+  var offset = 0;
 
-  // Calculate next month (handles year rollover)
-  var nextMonth = currentMonth + 1;
-  var nextYear = currentYear;
-  if (nextMonth > 11) {
-    nextMonth = 0;
-    nextYear = currentYear + 1;
-  }
+  function render() {
+    var m1 = calGetMonthYear(baseYear, baseMonth, offset);
+    var m2 = calGetMonthYear(baseYear, baseMonth, offset + 1);
 
-  // Build both months
-  var html = '';
-  html += calBuildMonth(currentYear, currentMonth, 'cal-dark', eventsData);
-  html += calBuildMonth(nextYear, nextMonth, 'cal-light', eventsData);
+    var html = '';
+    html += calBuildMonth(m1.year, m1.month, 'cal-dark', eventsData);
+    html += calBuildMonth(m2.year, m2.month, 'cal-light', eventsData);
 
-  container.innerHTML = html;
+    // Month navigation bar
+    html += '<div class="cal-nav">';
+    if (offset > 0) {
+      html += '<button id="cal-nav-prev" class="cal-nav-btn">';
+      html += '<span class="cal-nav-arrow">&#8249;</span> Previous Months';
+      html += '</button>';
+    }
+    html += '<button id="cal-nav-next" class="cal-nav-btn">';
+    html += 'Next Months <span class="cal-nav-arrow">&#8250;</span>';
+    html += '</button>';
+    html += '</div>';
 
-  // Populate hero month buttons
-  var btnContainer = document.getElementById('calendar-month-btns');
-  if (btnContainer) {
-    var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
-    var m1 = months[currentMonth] + ' ' + currentYear;
-    var m2 = months[nextMonth] + ' ' + nextYear;
-    var m1Id = months[currentMonth].toLowerCase() + '-events';
-    var m2Id = months[nextMonth].toLowerCase() + '-events';
-    btnContainer.innerHTML = '<a href="#' + m1Id + '" class="btn btn-teal" style="font-size:14px;padding:10px 24px;">' + m1 + '</a> ' +
-      '<a href="#' + m2Id + '" class="btn btn-teal" style="font-size:14px;padding:10px 24px;background:transparent;border:1.5px solid var(--silver-primary);color:var(--silver-primary);">' + m2 + '</a>';
-  }
+    container.innerHTML = html;
 
-  // Re-observe any new animate-on-scroll elements inside the container
-  // so scroll animations still work for dynamically inserted content
-  if (typeof IntersectionObserver !== 'undefined') {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+    // Wire up navigation
+    var prevBtn = document.getElementById('cal-nav-prev');
+    var nextBtn = document.getElementById('cal-nav-next');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        if (offset > 0) {
+          offset--;
+          render();
+          var firstSection = container.querySelector('section');
+          if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }
 
-    var animatedEls = container.querySelectorAll('.animate-on-scroll');
-    for (var i = 0; i < animatedEls.length; i++) {
-      observer.observe(animatedEls[i]);
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        offset++;
+        render();
+        var firstSection = container.querySelector('section');
+        if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    // Update hero month buttons
+    var btnContainer = document.getElementById('calendar-month-btns');
+    if (btnContainer) {
+      var name1 = CALENDAR_MONTH_NAMES[m1.month] + ' ' + m1.year;
+      var name2 = CALENDAR_MONTH_NAMES[m2.month] + ' ' + m2.year;
+      var id1 = CALENDAR_MONTH_NAMES[m1.month].toLowerCase() + '-events';
+      var id2 = CALENDAR_MONTH_NAMES[m2.month].toLowerCase() + '-events';
+      btnContainer.innerHTML =
+        '<a href="#' + id1 + '" class="btn btn-teal" style="font-size:14px;padding:10px 24px;">' + name1 + '</a> ' +
+        '<a href="#' + id2 + '" class="btn btn-teal" style="font-size:14px;padding:10px 24px;background:transparent;border:1.5px solid var(--silver-primary);color:var(--silver-primary);">' + name2 + '</a>';
+    }
+
+    // Re-observe scroll animations for dynamically inserted content
+    if (typeof IntersectionObserver !== 'undefined') {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      var animatedEls = container.querySelectorAll('.animate-on-scroll');
+      for (var i = 0; i < animatedEls.length; i++) {
+        observer.observe(animatedEls[i]);
+      }
     }
   }
+
+  render();
 }

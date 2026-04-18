@@ -2009,7 +2009,8 @@ ul { list-style: none; }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: var(--silver-link);
+  color: var(--maroon);
+  opacity: 0.5;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.05em;
@@ -2623,6 +2624,39 @@ ul { list-style: none; }
 }
 .cal-book-cta:hover {
   background: var(--maroon-light);
+}
+
+/* Calendar month navigation */
+.cal-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 20px;
+  background: #fff;
+}
+.cal-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Norwester', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 2px solid var(--maroon);
+  background: transparent;
+  color: var(--maroon);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.cal-nav-btn:hover {
+  background: var(--maroon);
+  color: var(--white);
+}
+.cal-nav-arrow {
+  font-size: 20px;
+  line-height: 1;
 }
 
 /* Review platform icons row */
