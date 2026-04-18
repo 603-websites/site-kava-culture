@@ -8,6 +8,8 @@
   <meta property="og:title" content="The Spot — Kava Bar &amp; Music · Nashua NH"/>
   <meta property="og:description" content="The Spot — Nashua's kava bar and live music venue at 217 Main St. Premium kava, craft coffee, creative mocktails, and live entertainment in downtown Nashua, NH."/>
   <meta property="og:image" content="https://thespotnashua.com/images/logothespot.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://thespotnashua.com/images/logothespot.jpg"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://thespotnashua.com/"/>
   <link rel="icon" type="image/jpeg" href="images/logothespot.jpg"/>
@@ -15,9 +17,9 @@
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://www.google.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Arizonia&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jdkato/norwester@main/norwester.otf" as="font" type="font/otf" crossorigin/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -186,7 +188,7 @@
 
     <!-- Slide 2 -->
     <div class="hero-slide hero-slide-2">
-      <img src="images/BandJamthespot.jpg" alt="Live band performing on stage at The Spot" class="hero-photo" />
+      <img src="images/BandJamthespot.jpg" alt="Live band performing on stage at The Spot" class="hero-photo" loading="lazy" />
       <div class="hero-photo-overlay"></div>
       <div class="hero-content">
         <span class="hero-bula" style="font-size:clamp(40px,6vw,70px);">Feel the Vibe</span>
@@ -199,7 +201,7 @@
 
     <!-- Slide 3 -->
     <div class="hero-slide hero-slide-3">
-      <img src="images/grouppic.jpg" alt="Group of friends at The Spot Nashua" class="hero-photo" />
+      <img src="images/grouppic.jpg" alt="Group of friends at The Spot Nashua" class="hero-photo" loading="lazy" />
       <div class="hero-photo-overlay"></div>
       <div class="hero-content">
         <span class="hero-bula" style="font-size:clamp(36px,5vw,60px);">Open This Week</span>
@@ -267,7 +269,7 @@
           <iframe
             src="https://www.google.com/maps?q=217+Main+Street,+Nashua,+NH+03060&output=embed"
             style="border:0;display:block;width:100%;height:350px;"
-            allowfullscreen="" loading="eager"
+            allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title="The Spot location on Google Maps">
           </iframe>
@@ -519,6 +521,7 @@
         <h3>Sign up for Events &amp; Specials</h3>
         <form class="footer-email-form">
           <input type="email" placeholder="Your email address" required maxlength="255" aria-label="Your email address"/>
+          <div style="position:absolute;left:-9999px;" aria-hidden="true"><input type="text" name="website_url" tabindex="-1" autocomplete="off"/></div>
           <button type="submit" class="btn btn-teal">Sign Up</button>
         </form>
       </div>
@@ -565,7 +568,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.01a8.16 8.16 0 004.77 1.52V7.08a4.85 4.85 0 01-1-.39z"/></svg>
           </a>
         </div>
-        <p class="footer-copyright">&copy; 2024–26 The Spot Kava Bar &amp; Music | All Rights Reserved | <span style="color:rgba(255,255,255,0.4);">Privacy Policy</span> | <a href="https://www.websiteupgraderpro.com/login" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.35);">Admin</a> | Designed by 603 Websites</p>
+        <p class="footer-copyright">&copy; 2024–26 The Spot Kava Bar &amp; Music | All Rights Reserved | <a href="pages/privacy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> | <a href="https://www.websiteupgraderpro.com/login" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.35);">Admin</a> | Designed by 603 Websites</p>
       </div>
     </div>
   </div>

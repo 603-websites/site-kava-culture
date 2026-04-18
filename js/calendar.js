@@ -131,7 +131,8 @@ function calBuildMonth(year, month, theme, eventsData) {
   }
 
   // Section open
-  html += '<section style="background:' + sectionBg + ';padding:60px 0;">';
+  var sectionId = CALENDAR_MONTH_NAMES[month].toLowerCase() + '-events';
+  html += '<section id="' + sectionId + '" style="background:' + sectionBg + ';padding:60px 0;">';
   html += '<div class="container">';
 
   // Title
@@ -237,6 +238,18 @@ function initDynamicCalendar() {
   html += calBuildMonth(nextYear, nextMonth, 'cal-light', eventsData);
 
   container.innerHTML = html;
+
+  // Populate hero month buttons
+  var btnContainer = document.getElementById('calendar-month-btns');
+  if (btnContainer) {
+    var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+    var m1 = months[currentMonth] + ' ' + currentYear;
+    var m2 = months[nextMonth] + ' ' + nextYear;
+    var m1Id = months[currentMonth].toLowerCase() + '-events';
+    var m2Id = months[nextMonth].toLowerCase() + '-events';
+    btnContainer.innerHTML = '<a href="#' + m1Id + '" class="btn btn-teal" style="font-size:14px;padding:10px 24px;">' + m1 + '</a> ' +
+      '<a href="#' + m2Id + '" class="btn btn-teal" style="font-size:14px;padding:10px 24px;background:transparent;border:1.5px solid var(--silver-primary);color:var(--silver-primary);">' + m2 + '</a>';
+  }
 
   // Re-observe any new animate-on-scroll elements inside the container
   // so scroll animations still work for dynamically inserted content

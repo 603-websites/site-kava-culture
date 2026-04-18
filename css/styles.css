@@ -2,12 +2,13 @@
    THE SPOT NASHUA — Global Styles
    ============================================================ */
 
-/* Norwester via CDN fallback */
+/* Norwester — self-hosted */
 @font-face {
   font-family: 'Norwester';
-  src: url('https://cdn.jsdelivr.net/gh/jdkato/norwester@main/norwester.otf') format('opentype');
+  src: url('../fonts/norwester.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* ============================================================
@@ -24,7 +25,7 @@
   --text-body: #444444;
   --text-heading: #1a1a1a;
   --white: #FFFFFF;
-  --sage-green: #A3BA98;
+
   --border-light: rgba(255,255,255,0.3);
   --maroon: #800020;
   --maroon-light: #9B2335;
@@ -1363,7 +1364,6 @@ ul { list-style: none; }
 }
 
 .core-values-section {
-  background: var(--sage-green);
   padding: 80px 0;
   text-align: center;
   position: relative;
@@ -4716,7 +4716,7 @@ html.js-loaded .animate-on-scroll.visible {
 .bg-dark        { background: var(--dark-bg); }
 .bg-teal-deep   { background: var(--dark-deep); }
 .bg-teal        { background: var(--silver-primary); }
-.bg-sage        { background: var(--sage-green); }
+
 
 /* ----------------------------------------------------------
    Avatar / icon circles — replaces inline width + height +
@@ -5298,4 +5298,20 @@ html.js-loaded .animate-on-scroll.visible {
     max-width: 100%;
     overflow: hidden;
   }
+}
+
+/* ============================================================
+   Reduced Motion Accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-slide { transition: none !important; }
+  .review-carousel-track { transition: none !important; }
+  .newsletter-float-text span { transition: none !important; }
+  .animate-on-scroll { opacity: 1 !important; transform: none !important; }
 }

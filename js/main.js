@@ -24,15 +24,6 @@ function initNav() {
   hamburger.addEventListener('click', () => toggleNav(!overlay.classList.contains('open')));
   backdrop.addEventListener('click', () => toggleNav(false));
 
-  // Dropdown toggles
-  document.querySelectorAll('.nav-dropdown-label').forEach(label => {
-    label.addEventListener('click', () => {
-      const sub = label.nextElementSibling;
-      if (sub) sub.classList.toggle('open');
-      const arrow = label.querySelector('.nav-arrow');
-      if (arrow) arrow.textContent = sub.classList.contains('open') ? '\u25B2' : '\u25BE';
-    });
-  });
 }
 
 /* -------------------------------------------------------
@@ -101,6 +92,11 @@ function initEmailSignup() {
   document.querySelectorAll('.footer-email-form').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
+
+      // Honeypot spam protection
+      const honeypot = form.querySelector('input[name="website_url"]');
+      if (honeypot && honeypot.value) return;
+
       const btn = form.querySelector('button');
       const emailInput = form.querySelector('input[type="email"]');
       const email = emailInput?.value?.trim();
@@ -164,6 +160,7 @@ function setActiveNavLink() {
    8. NEWSLETTER FLOATING CTA — carousel text
 ------------------------------------------------------- */
 function initNewsletterFloat() {
+  try { if (sessionStorage.getItem('spot_nl_dismissed')) return; } catch(e) {}
   const messages = ['Subscribe to our Newsletter', 'Live Music Events'];
   let idx = 0;
 
@@ -178,6 +175,17 @@ function initNewsletterFloat() {
       '<div class="newsletter-float-text"><span>' + messages[0] + '</span></div>' +
       '<span class="newsletter-float-arrow">\u2191</span>' +
     '</div>';
+
+  var closeBtn = document.createElement('span');
+  closeBtn.className = 'newsletter-float-close';
+  closeBtn.innerHTML = '&times;';
+  closeBtn.style.cssText = 'cursor:pointer;font-size:18px;padding:0 8px;opacity:0.7;';
+  closeBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    bar.style.display = 'none';
+    try { sessionStorage.setItem('spot_nl_dismissed', '1'); } catch(e) {}
+  });
+  bar.querySelector('.newsletter-float-inner').appendChild(closeBtn);
 
   document.body.appendChild(bar);
 
@@ -407,7 +415,8 @@ function initGenericForms() {
   const CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
 
   document.querySelectorAll('[data-form-handler]').forEach(form => {
-    const config = JSON.parse(form.dataset.formHandler);
+    let config;
+    try { config = JSON.parse(form.dataset.formHandler); } catch(e) { return; }
     const apiPath = config.apiPath;
     const successElId = config.successEl;
     const errorElId = config.errorEl;
@@ -421,6 +430,10 @@ function initGenericForms() {
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+
+      // Honeypot spam protection
+      const honeypot = form.querySelector('input[name="website_url"]');
+      if (honeypot && honeypot.value) return;
       if (errorEl) errorEl.style.display = 'none';
 
       // Collect all form inputs into payload
@@ -463,6 +476,8 @@ function initGenericForms() {
           if (formWrap) formWrap.style.display = 'none';
           if (successEl) successEl.style.display = 'block';
           form.reset();
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
         } else {
           throw new Error('Request failed');
         }
@@ -480,6 +495,40 @@ function initGenericForms() {
 }
 
 /* -------------------------------------------------------
+   12. BOOKING ANALYTICS — track form submission event
+------------------------------------------------------- */
+function initBookingAnalytics() {
+  var wrap = document.getElementById('booking-form-wrap');
+  if (!wrap) return;
+  var CLIENT_ID = 'd7a73501-80d7-4708-a92d-02a3aedc9836';
+  var API_BASE = 'https://websiteupgraderpro.com';
+  function getSessionId() {
+    var key = 'spot_sid';
+    var sid = sessionStorage.getItem(key);
+    if (!sid) { sid = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem(key, sid); }
+    return sid;
+  }
+  new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      if (m.attributeName === 'style' && wrap.style.display === 'none') {
+        try {
+          fetch(API_BASE + '/api/analytics/events', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              clientId: CLIENT_ID, sessionId: getSessionId(),
+              eventType: 'form_submission', eventName: 'Booking Request',
+              properties: { path: location.pathname, formName: 'booking_request' }
+            }),
+            keepalive: true
+          }).catch(function() {});
+        } catch (e) {}
+      }
+    });
+  }).observe(wrap, { attributes: true });
+}
+
+/* -------------------------------------------------------
    INIT ALL
 ------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
@@ -493,6 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNewsletterFloat();
   initReviewCarousel();
   initGenericForms();
+  initBookingAnalytics();
   if (typeof initDynamicCalendar === 'function') initDynamicCalendar();
   updateCopyrightYear();
 });
