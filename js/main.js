@@ -24,6 +24,18 @@ function initNav() {
   hamburger.addEventListener('click', () => toggleNav(!overlay.classList.contains('open')));
   backdrop.addEventListener('click', () => toggleNav(false));
 
+  // Close button inside overlay
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'nav-overlay-close';
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  closeBtn.innerHTML = '&times;';
+  closeBtn.addEventListener('click', () => toggleNav(false));
+  overlay.insertBefore(closeBtn, overlay.firstChild);
+
+  // Close overlay when a nav link is tapped
+  overlay.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleNav(false));
+  });
 }
 
 /* -------------------------------------------------------

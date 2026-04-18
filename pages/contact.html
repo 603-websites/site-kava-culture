@@ -105,17 +105,17 @@
             <div class="form-row">
               <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label">First Name *</label>
-                <input type="text" class="form-input" id="contactFirstName" name="firstName" placeholder="FIRST NAME" maxlength="127" required/>
+                <input type="text" class="form-input" id="contactFirstName" name="firstName" placeholder="FIRST NAME" maxlength="127" required autocomplete="given-name"/>
               </div>
               <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label">Last Name *</label>
-                <input type="text" class="form-input" id="contactLastName" name="lastName" placeholder="LAST NAME" maxlength="127" required/>
+                <input type="text" class="form-input" id="contactLastName" name="lastName" placeholder="LAST NAME" maxlength="127" required autocomplete="family-name"/>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Email Address *</label>
-              <input type="email" class="form-input" id="contactEmailAddr" name="email" placeholder="EMAIL ADDRESS" maxlength="255" required/>
+              <input type="email" class="form-input" id="contactEmailAddr" name="email" placeholder="EMAIL ADDRESS" maxlength="255" required autocomplete="email"/>
             </div>
 
             <div class="form-group">
@@ -229,7 +229,7 @@
       <div class="footer-signup">
         <h3>Sign up for Events &amp; Specials</h3>
         <form class="footer-email-form">
-          <input type="email" placeholder="Your email address" required maxlength="255" aria-label="Your email address"/>
+          <input type="email" placeholder="Your email address" required maxlength="255" aria-label="Your email address" autocomplete="email"/>
           <div style="position:absolute;left:-9999px;" aria-hidden="true"><input type="text" name="website_url" tabindex="-1" autocomplete="off"/></div>
           <button type="submit" class="btn btn-teal">Sign Up</button>
         </form>
@@ -275,8 +275,8 @@
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
-<script src="../js/analytics.js"></script>
+<script src="../js/main.js" defer></script>
+<script src="../js/analytics.js" defer></script>
 
 <!-- Contact form submission handled by initGenericForms() in main.js -->
 </body>
